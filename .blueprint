@@ -1,0 +1,14 @@
+created:
+    - database/factories/UserFactory.php
+    - database/factories/CompanyFactory.php
+    - database/factories/LocaleFactory.php
+    - database/migrations/2025_02_05_101732_create_users_table.php
+    - database/migrations/2025_02_05_101733_create_companies_table.php
+    - database/migrations/2025_02_05_101734_create_locales_table.php
+    - app/Models/User.php
+    - app/Models/Company.php
+    - app/Models/Locale.php
+models:
+    User: { email: 'string unique', password: 'string hidden', firstname: string, lastname: string, bio: 'string nullable', birthdate: 'date nullable', phone: 'string unique', address: 'string nullable', city: 'string nullable', neighborhood: 'string nullable', country: 'string nullable', zip_code: 'string nullable', avatar: 'string nullable', role: string, relationships: { hasMany: Company } }
+    Company: { name: string, category: 'string nullable', description: 'text nullable', phone: 'string nullable', address: 'string nullable', city: 'string nullable', neighborhood: 'string nullable', country: 'string nullable', zip_code: 'string nullable', logo: 'string nullable', website: 'string nullable', social_media: 'json nullable', owner_id: 'id foreign:users', relationships: { hasMany: Locale } }
+    Locale: { name: 'string nullable', slug: 'string unique nullable', description: 'text nullable', address: string, city: string, neighborhood: string, country: string, zip: 'string nullable', phone: string, phone2: 'string nullable', email: 'string nullable', website: 'string nullable', facebook: 'string nullable', instagram: 'string nullable', twitter: 'string nullable', linkedin: 'string nullable', tiktok: 'string nullable', youtube: 'string nullable', cover: 'string nullable', is_primary: 'boolean default:false', company_id: 'id foreign:companies' }

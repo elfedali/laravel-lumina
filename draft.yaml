@@ -1,0 +1,120 @@
+models:
+  User:
+    email: string unique
+    password: string hidden
+    firstname: string
+    lastname: string
+    bio: string nullable
+    birthdate: date nullable
+    phone: string unique
+    address: string nullable
+    city: string nullable
+    neighborhood: string nullable
+    country: string nullable
+    zip_code: string nullable
+    avatar: string nullable
+    role: string
+    relationships: 
+      hasMany: Company
+
+  Company:
+    name: string
+    category: string nullable # Consider a separate categories model for better management
+    description: text nullable # Use text for longer descriptions
+    phone: string nullable
+    address: string nullable
+    city: string nullable
+    neighborhood: string nullable
+    country: string nullable
+    zip_code: string nullable
+    logo: string nullable
+    website: string nullable
+    social_media: json nullable
+    owner_id: id foreign:users
+    relationships:
+      hasMany: Locale 
+
+  Locale: # Renamed from locale, singular and more conventional
+    name: string nullable
+    slug: string unique nullable # For SEO-friendly URLs
+    description: text nullable # Use text for longer descriptions
+
+    address: string
+    city: string
+    neighborhood: string
+    country: string
+    zip: string nullable
+
+    phone: string
+    phone2: string nullable
+
+    email: string nullable
+    website: string nullable
+
+    facebook: string nullable
+    instagram: string nullable
+    twitter: string nullable
+    linkedin: string nullable
+    tiktok: string nullable
+    youtube: string nullable
+
+    cover: string nullable
+    is_primary: boolean default:false
+    company_id: id foreign:companies
+
+
+  # Service:
+  #   name: string
+  #   description: text nullable # Use text for longer descriptions
+  #   price: float
+  #   duration: string # Consider using an integer to represent minutes for easier calculations
+  #   status: string enum:active,inactive
+  #   locale_id: id foreign:locales
+  #   relationships:
+  #     belongsToMany: Booking # A service can be part of multiple bookings
+
+  # Person:
+  #   firstname: string
+  #   lastname: string
+  #   bio: text nullable # Use text for longer descriptions
+  #   birthdate: date nullable
+  #   phone: string nullable
+  #   address: string nullable
+  #   city: string nullable
+  #   neighborhood: string nullable
+  #   country: string nullable
+  #   zip: string nullable
+  #   avatar: string nullable
+  #   cin: string unique nullable # Added unique constraint
+  #   cv: string nullable
+  #   job: string nullable
+  #   status: string enum:active,inactive
+  #   locale_id: id foreign:locales # Corrected typo: locale_id
+  #   person_type: string enum:employee,client,manager,supplier,partner,other
+  #   user_id: id foreign:users nullable # if the person is a user
+  #   relationships:
+  #     belongsToMany: Booking # A person can be part of multiple bookings
+  #     hasMany: Payment # A person can make payments
+
+  # Booking:
+  #   date: date
+  #   time: time
+  #   status: string enum:pending,confirmed,canceled,completed # Added completed status
+  #   user_id: id foreign:users # the user who made the booking (could be employee or client)
+  #   locale_id: id foreign:locales
+  #   remarks: text nullable # Use text for longer remarks
+  #   relationships:
+  #     belongsToMany: Service,  Person , Payment # A booking can have one payment (or none)
+
+  # Payment:
+  #   amount: float
+  #   date: date
+  #   status: string enum:pending,confirmed,canceled,refunded # Added refunded status
+  #   type: string enum:cash,credit_card,check,transfer,other
+  #   user_id: id foreign:users # the user who made the payment
+  #   locale_id: id foreign:locales
+  #   person_id: id foreign:persons
+  #   booking_id: id foreign:bookings nullable # Link payment to booking
+
+
+    
