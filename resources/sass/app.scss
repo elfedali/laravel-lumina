@@ -79,8 +79,22 @@ $sidebar_width: 320px;
                 flex-direction: column;
                 width: 100%;
             }
-            .nav-link {
-                padding-left: 0;
+            .nav-link{
+                padding-left: 1rem;
+                &.active{
+                   position: relative;
+                   &::before{
+                       content: '';
+                       position: absolute;
+                       width: 0.2rem;
+                       height: 80%;
+                       background-color: $white;
+                       left: 0;
+                       top: 10%;
+                       border-radius: 0 0.5rem 0.5rem 0;
+                       
+                   }
+                }
             }
         }
         .main-container {
@@ -140,12 +154,4 @@ label{
     font-weight: 400;
     font-size: 0.9375rem;
     opacity: 0.6;
-}
-
-
-a{
-    transition: all 0.3s ease;
-    &:hover{
-       opacity: 0.5;
-    }
 }

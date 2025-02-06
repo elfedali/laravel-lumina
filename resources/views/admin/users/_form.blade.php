@@ -1,5 +1,5 @@
 <main>
-   
+
     <!-- Informations sur le propriétaire -->
     <div class="card">
         <div class="card-body">
@@ -9,12 +9,15 @@
                 <div class="col-lg mb-3">
                     <div class="form-floating">
 
-                        <input type="text" name="lastname" id="lastname" class="form-control @error('lastname') is-invalid @enderror" 
-                               placeholder="{{ __('Nom de la famille') }}" value="{{ $user->lastname ?? old('lastname') }}">
-                               <label for="lastname" class="form-label">{{ __('Nom de la famille') }} <span class="text-danger">*</span></label>
-                               @error('lastname')
-                                   <div class="invalid-feedback">{{ $message }}</div>
-                               @enderror
+                        <input type="text" name="lastname" id="lastname"
+                            class="form-control @error('lastname') is-invalid @enderror"
+                            placeholder="{{ __('Nom de la famille') }}"
+                            value="{{ $user->lastname ?? old('lastname') }}">
+                        <label for="lastname" class="form-label">{{ __('Nom de la famille') }} <span
+                                class="text-danger">*</span></label>
+                        @error('lastname')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
@@ -22,9 +25,11 @@
                 <div class="col-lg mb-3">
                     <div class="form-floating">
 
-                        <input type="text" name="firstname" id="firstname" class="form-control @error('firstname') is-invalid @enderror" 
-                        placeholder="{{ __('Prénom') }}" value="{{ $user->firstname ?? old('firstname') }}">
-                        <label for="firstname" class="form-label">{{ __('Prénom') }} <span class="text-danger">*</span></label>
+                        <input type="text" name="firstname" id="firstname"
+                            class="form-control @error('firstname') is-invalid @enderror"
+                            placeholder="{{ __('Prénom') }}" value="{{ $user->firstname ?? old('firstname') }}">
+                        <label for="firstname" class="form-label">{{ __('Prénom') }} <span
+                                class="text-danger">*</span></label>
                         @error('firstname')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -35,49 +40,54 @@
             <div class="row">
                 <!-- Téléphone -->
                 <div class=" col-lg mb-3">
-                  <div class="form-floating">
-                    
-                      <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" 
-                      placeholder="{{ __('Téléphone') }}" value="{{ $user->phone ?? old('phone') }}">
-                      <label for="phone" class="form-label">{{ __('Téléphone') }} <span class="text-danger">*</span></label>
-                      @error('phone')
-                          <div class="invalid-feedback">{{ $message }}</div>
-                      @enderror
-                  </div>
+                    <div class="form-floating">
+
+                        <input type="text" name="phone" id="phone"
+                            class="form-control @error('phone') is-invalid @enderror"
+                            placeholder="{{ __('Téléphone') }}" value="{{ $user->phone ?? old('phone') }}">
+                        <label for="phone" class="form-label">{{ __('Téléphone') }} <span
+                                class="text-danger">*</span></label>
+                        @error('phone')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
             </div>
 
             <div class="row">
                 <!-- Email -->
                 <div class=" col-lg mb-3">
-                   <div class="form-floating">
+                    <div class="form-floating">
 
-                       <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" 
-                       placeholder="{{ __('Adresse e-mail') }}" value="{{ $user->email ?? old('email') }}"
-                       @if($isEdit) disabled @endif autocomplete="off"
-                       >
-                       <label for="email" class="form-label">{{ __('Adresse e-mail') }} <span class="text-danger">*</span></label>
-                       @error('email')
-                           <div class="invalid-feedback">{{ $message }}</div>
-                       @enderror
-                   </div>
+                        <input type="email" name="email" id="email"
+                            class="form-control @error('email') is-invalid @enderror"
+                            placeholder="{{ __('Adresse e-mail') }}" value="{{ $user->email ?? old('email') }}"
+                            @if ($isEdit) disabled @endif autocomplete="off">
+                        <label for="email" class="form-label">{{ __('Adresse e-mail') }} <span
+                                class="text-danger">*</span></label>
+                        @error('email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
 
                 <!-- Mot de passe -->
                 <div class=" col-lg mb-3">
                     <div class="form-floating">
 
-                        <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" 
-                        placeholder="{{ __('Mot de passe') }}" autocomplete="off" 
-                        @if($isEdit) disabled @endif>
-                        <label for="password" class="form-label">{{ __('Mot de passe') }} <span class="text-danger">*</span></label>
+                        <input type="password" name="password" id="password"
+                            class="form-control @error('password') is-invalid @enderror"
+                            placeholder="{{ __('Mot de passe') }}" autocomplete="off"
+                            @if ($isEdit) disabled @endif>
+                        <label for="password" class="form-label">{{ __('Mot de passe') }} <span
+                                class="text-danger">*</span></label>
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    
+
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -90,25 +100,31 @@
                 <!-- Nom du salon -->
                 <div class=" col-lg mb-3">
                     <div class="form-floating">
-                        <input type="text" name="company[name]" id="company_name" class="form-control @error("company.name") is-invalid @enderror" 
-                        placeholder="{{ __('Nom du salon') }}" value="{{ old('company.name', $user->company->name ?? '') }}">
-                        <label for="company_name" class="form-label">{{ __('Nom du salon') }} <span class="text-danger">*</span></label>
-                        @error("company.name")
+                        <input type="text" name="company[name]" id="company_name"
+                            class="form-control @error('company.name') is-invalid @enderror"
+                            placeholder="{{ __('Nom du salon') }}"
+                            value="{{ old('company.name', $user->company->name ?? '') }}">
+                        <label for="company_name" class="form-label">{{ __('Nom du salon') }} <span
+                                class="text-danger">*</span></label>
+                        @error('company.name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <!-- /.form-floating -->
-                    
+
                 </div>
 
                 <!-- Catégorie du salon -->
                 <div class=" col-lg mb-3">
                     <div class="form-floating">
 
-                        <input type="text" name="company[category]" id="company_category" class="form-control @error("company.category") is-invalid @enderror" 
-                        placeholder="{{ __('Catégorie du salon') }}" value="{{ old('company.category', $user->company->category ?? '') }}">
-                        <label for="company_category" class="form-label">{{ __('Catégorie du salon') }} <span class="text-danger">*</span></label>
-                        @error("company.category")
+                        <input type="text" name="company[category]" id="company_category"
+                            class="form-control @error('company.category') is-invalid @enderror"
+                            placeholder="{{ __('Catégorie du salon') }}"
+                            value="{{ old('company.category', $user->company->category ?? '') }}">
+                        <label for="company_category" class="form-label">{{ __('Catégorie du salon') }} <span
+                                class="text-danger">*</span></label>
+                        @error('company.category')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
@@ -145,7 +161,7 @@
     </div>
 </main>
 
-@if(!$isEdit)
+{{-- @if (!$isEdit)
 <script>
     window.addEventListener('load', function() {
         setTimeout(() => {
@@ -154,4 +170,4 @@
         }, 500);
     });
 </script>
-@endif
+@endif --}}

@@ -75,8 +75,15 @@ class AdminUserController extends Controller
     {
         DB::transaction(function () use ($request, $user) {
             $user->update($request->validated());
-            $user->company()->update(array_merge(
+            if ($user->company) {
+                $user->company()->update(array_merge(
+                    $request->validated()['company'],
+                    $request->file('company.logo') ? ['logo' => $request->file('company.logo')->store('logos', 'public')] : []
+                ));
+            }
+            $user->company()->create(array_merge(
                 $request->validated()['company'],
+                ['owner_id' => $user->id],
                 $request->file('company.logo') ? ['logo' => $request->file('company.logo')->store('logos', 'public')] : []
             ));
         });
