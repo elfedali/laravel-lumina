@@ -21,19 +21,18 @@ class CompanyFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
-            'name' => fake()->name(),
-            'category' => fake()->word(),
+            'name' => fake()->company() . ' ' . fake()->randomElement(['SARL', 'SA', 'SAS', 'SNC', 'SARLU', 'SASU', 'EURL', 'EIRL', 'EI', 'AE', 'EIRL']),
+            'category' => fake()->randomElement(['Beauté', 'Esthétique', 'Coiffure', 'Santé', 'Bien-être']),
+            // 'logo' => fake()->word(),
             'description' => fake()->text(),
             'phone' => fake()->phoneNumber(),
-            'address' => fake()->word(),
-            'city' => fake()->city(),
-            'neighborhood' => fake()->word(),
-            'country' => fake()->country(),
-            'zip_code' => fake()->word(),
-            'logo' => fake()->word(),
-            'website' => fake()->word(),
-            'social_media' => '{}',
+            'address' => fake()->randomElement(['Rue', 'Avenue', 'Boulevard', 'Place']) . ' ' . fake()->randomElement(['Mohamed V', 'Hassan II', 'Allal Ben Abdellah', 'Abdelkrim El Khattabi', 'Oued Laou', 'Oued Martil',]),
+            'city' => fake()->randomElement(['Tanger', 'Tétouan', 'Fnideq', 'Mdiq', 'Chefchaouen', 'Larache', 'Asilah', 'Tétouan', 'Tanger', 'Fnideq', 'Mdiq', 'Chefchaouen', 'Larache', 'Asilah']),
+            'neighborhood' => fake()->randomElement(['Centre Ville', 'Quartier Administratif', 'Quartier Industriel', 'Quartier Résidentiel', 'Quartier Populaire']),
+            'country' => 'Maroc',
+            'zip_code' => fake()->postcode(),
             'owner_id' => User::factory(),
         ];
     }

@@ -25,6 +25,7 @@ Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])
 Route::middleware('auth')
   ->prefix('admin')
   ->group(function () {
+
     // users
     Route::get('/users', [App\Http\Controllers\AdminUserController::class, 'index'])
       ->name('users.index');
@@ -32,8 +33,8 @@ Route::middleware('auth')
       ->name('users.create');
     Route::post('/users', [App\Http\Controllers\AdminUserController::class, 'store'])
       ->name('users.store');
-    Route::get('/users/{user}', [App\Http\Controllers\AdminUserController::class, 'show'])
-      ->name('users.show');
+    // Route::get('/users/{user}', [App\Http\Controllers\AdminUserController::class, 'show'])
+    //   ->name('users.show');
     Route::get('/users/{user}/edit', [App\Http\Controllers\AdminUserController::class, 'edit'])
       ->name('users.edit');
     Route::put('/users/{user}', [App\Http\Controllers\AdminUserController::class, 'update'])

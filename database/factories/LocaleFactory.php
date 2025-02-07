@@ -22,27 +22,21 @@ class LocaleFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'slug' => fake()->slug(),
-            'description' => fake()->text(),
-            'address' => fake()->word(),
-            'city' => fake()->city(),
-            'neighborhood' => fake()->word(),
-            'country' => fake()->country(),
-            'zip' => fake()->postcode(),
+            'name' => null,
+            'slug' => null,
+            'description' => null,
+
+            'address' => fake()->randomElement(['Rue', 'Avenue', 'Boulevard', 'Place']) . ' ' . fake()->randomElement(['Mohamed V', 'Hassan II', 'Allal Ben Abdellah', 'Abdelkrim El Khattabi', 'Oued Laou', 'Oued Martil',]),
+            'city' => fake()->randomElement(['Marrakech', 'Casablanca', 'Rabat', 'Tanger']),
+            'neighborhood' => fake()->randomElement(['Guiliz', 'Massira', 'Targa', 'Majorelle']),
+            'country' => 'Maroc',
+            'zip' => null,
+
             'phone' => fake()->phoneNumber(),
-            'phone2' => fake()->word(),
-            'email' => fake()->safeEmail(),
-            'website' => fake()->word(),
-            'facebook' => fake()->word(),
-            'instagram' => fake()->word(),
-            'twitter' => fake()->word(),
-            'linkedin' => fake()->word(),
-            'tiktok' => fake()->word(),
-            'youtube' => fake()->word(),
-            'cover' => fake()->word(),
+            'phone2' => fake()->phoneNumber(),
+
             'is_primary' => fake()->boolean(),
-            'company_id' => Company::factory(),
+            'company_id' => fake()->randomElement(Company::pluck('id')->toArray()),
         ];
     }
 }

@@ -95,7 +95,7 @@
     <!-- Informations sur le salon -->
     <div class="card mt-4">
         <div class="card-body">
-            <h6><strong>{{ __('Informations sur le salon.') }}</strong></h6>
+            <h6>{{ __('Informations sur le salon.') }}</h6>
             <div class="row">
                 <!-- Nom du salon -->
                 <div class=" col-lg mb-3">
@@ -137,19 +137,49 @@
                 <div class="form-floating col-lg mb-3">
                     <div class="border p-3 rounded">
                         <div class="d-flex justify-content-between align-items-center">
+
+                            <input type="file" name="company[logo]" id="logo" class="d-none"
+                                accept="image/png, image/jpeg, image/jpg">
+
                             <div>
-                                <h6><strong>{{ __('Logo du salon') }}</strong></h6>
-                                <p class="text-muted m-0"><small>{{ __('Aucun logo n\'est importé') }}</small></p>
+
+                                <h6 class="m-0">
+
+                                    {{ __('Logo du salon') }}
+                                </h6>
+                                @if (isset($user) and $user->company?->logo)
+                                    <div class="mt-2">
+                                        <img src="{{ $user->company?->logoURL }}" alt="logo" class="rounded"
+                                            height="50">
+                                    </div>
+                                @endif
+
+                                @if (!$isEdit or !$user->company?->logo)
+                                    <p class="text-muted m-0">
+                                        <small id="logo_name">
+                                            {{ __('Aucun logo n\'est importé') }}
+                                        </small>
+                                    </p>
+                                @endif
                             </div>
                             <div>
-                                <a href="#" class="btn btn-sm btn-outline-dark">
-                                    <i class="fas fa-upload"></i> {{ __('Importer un logo') }}
+                                <a href="#" id="link_upload_logo" class="btn btn-sm btn-outline-dark">
+                                    <svg width="1.1rem" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
+                                        <g fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path>
+                                            <path d="M7 9l5-5l5 5"></path>
+                                            <path d="M12 4v12"></path>
+                                        </g>
+                                    </svg>
+
+                                    {{ __('Importer un logo') }}
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    @include('admin.users._openinghours')
+
                 </div>
             </div>
         </div>
@@ -160,6 +190,27 @@
         </button>
     </div>
 </main>
+
+
+
+@section('scripts')
+    <script>
+        // onload
+        window.addEventListener('load', function() {
+            // upload logo
+            document.getElementById('logo').addEventListener('change', function() {
+                var fileName = this.files[0].name;
+                document.getElementById('logo_name').textContent = fileName;
+            });
+
+            // upload logo
+            document.getElementById('link_upload_logo').addEventListener('click', function(event) {
+                event.preventDefault();
+                document.getElementById('logo').click();
+            });
+        });
+    </script>
+@endsection
 
 {{-- @if (!$isEdit)
 <script>

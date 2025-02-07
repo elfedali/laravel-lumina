@@ -56,7 +56,7 @@
                                                     </small>
                                                 </td>
                                                 <td>{{ $client->email ?? 'N/A' }}</td>
-                                                <td>{{ $client->telephone ?? 'N/A' }}</td>
+                                                <td>{{ $client->phone ?? 'N/A' }}</td>
                                                 <td>{{ $client->created_at->diffForHumans() }}</td>
                                                 <td class="text-end">
                                                     <div class="btn-group">
@@ -79,6 +79,10 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                            </div>
+
+                            <div class="d-flex justify-content-end">
+                                {{ $users->links() }}
                             </div>
                         @else
                             <div class="d-flex justify-content-center align-items-center flex-column">

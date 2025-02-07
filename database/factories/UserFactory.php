@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'bio' => 'I am a user',
             'birthdate' => fake()->date(),
             'phone' => fake()->phoneNumber(),
-            'address' => fake()->address(),
+            'address' => fake()->randomElement(['Rue', 'Avenue', 'Boulevard', 'Place']) . ' ' . fake()->randomElement(['Mohamed V', 'Hassan II', 'Allal Ben Abdellah', 'Abdelkrim El Khattabi', 'Oued Laou', 'Oued Martil',]),
             'city' => fake()->randomElement(['Marrakech', 'Casablanca', 'Rabat', 'Tanger']),
             'neighborhood' => fake()->randomElement(['Guiliz', 'Massira', 'Targa', 'Majorelle']),
             'country' => 'Morocco',

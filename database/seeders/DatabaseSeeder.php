@@ -23,5 +23,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'client@lumina.ma',
             'role' => 'user'
         ]);
+        \App\Models\Company::factory(10)->create();
+        \App\Models\Locale::factory(60)->create();
     }
 }

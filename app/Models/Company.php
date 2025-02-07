@@ -52,4 +52,20 @@ class Company extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // logoIMG
+    public function getLogoIMGAttribute(): string
+    {
+        return '<img src="' . asset('storage/' . $this->logo) . '" alt="' . $this->name . '" class="img-fluid" />';
+    }
+    // Logo URL
+    public function getLogoURLAttribute(): string
+    {
+        return asset('storage/' . $this->logo);
+    }
+    // // get logo
+    // public function getLogoAttribute($value): string
+    // {
+    //     return $value ? asset('storage/' . $value) : asset('img/defaults/company.png');
+    // }
 }

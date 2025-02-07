@@ -15,10 +15,12 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
 
 
-    
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
@@ -29,31 +31,31 @@
 
 
     <div class="layout layout-nav-side">
-       
+
         @if (Auth::user()->role == 'admin')
             @include('layouts.aside.aside_admin')
         @else
-          @include('layouts.aside.aside_user')
+            @include('layouts.aside.aside_user')
         @endif
 
         <section class="main-container d-flex justify-content-between flex-column">
             <div>
                 <header class="py-2 px-3 bg-white d-flex justify-content-end align-items-center">
-                    <a class="btn btn-link dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
+                    <a class="btn btn-link dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->fullname }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-start" aria-labelledby="triggerId">
-                 
+
                         <a class="dropdown-item" href="#">Mon compte</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                           <span class="text-danger">
-                            
-                            Déconnexion
-                           </span>
+                            <span class="text-danger">
+
+                                Déconnexion
+                            </span>
                         </a>
                     </div>
                     {{-- LOGOUT => FORM --}}
@@ -78,13 +80,15 @@
                 </div>
                 <!-- /.container-fluid -->
             </footer>
-            
+
         </section>
 
     </div>
     <!-- /.container-fluid -->
 
     @livewireScripts
+
+    @yield('scripts')
 </body>
 
 </html>

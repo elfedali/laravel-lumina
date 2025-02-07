@@ -72,6 +72,11 @@ class User extends Authenticatable
     // fullname
     public function getFullnameAttribute(): string
     {
-        return $this->firstname . ' ' . $this->lastname;
+        return $this->lastname . ' ' . $this->firstname;
+    }
+
+    public function  isAdmin(): bool
+    {
+        return $this->role === self::ROLE_ADMIN;
     }
 }

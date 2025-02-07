@@ -19,23 +19,21 @@ class Locale extends Model
         'name',
         'slug',
         'description',
+
         'address',
         'city',
         'neighborhood',
         'country',
         'zip',
+
         'phone',
         'phone2',
+
         'email',
-        'website',
-        'facebook',
-        'instagram',
-        'twitter',
-        'linkedin',
-        'tiktok',
-        'youtube',
-        'cover',
+        'media',
+
         'is_primary',
+        'cover',
         'company_id',
     ];
 
@@ -53,5 +51,12 @@ class Locale extends Model
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
+    }
+
+
+    // displayName
+    public function getDisplayNameAttribute(): string
+    {
+        return $this->address . ' ' . $this->neighborhood . ', <br><span class="fw-semibold">' . $this->city . '</span>';
     }
 }
