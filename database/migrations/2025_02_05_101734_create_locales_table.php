@@ -16,27 +16,28 @@ return new class extends Migration
         Schema::create('locales', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name')->nullable();
+            $table->string('name', 100)->nullable();
             $table->string('slug')->unique()->nullable();
             $table->text('description')->nullable();
 
-            $table->string('address');
-            $table->string('city');
-            $table->string('neighborhood');
-            $table->string('country');
+            $table->string('address', 100);
+            $table->string('city', 60);
+            $table->string('neighborhood', 100);
+            $table->string('country')->default('Maroc');
             $table->string('zip')->nullable();
 
-            $table->string('phone');
-            $table->string('phone2')->nullable();
+            $table->string('phone', 50);
+            $table->string('phone2', 50)->nullable();
 
 
-            $table->string('email')->nullable();
+            $table->string('email', 50)->nullable();
             $table->json('media')->nullable();
 
             $table->string('cover')->nullable();
 
             $table->boolean('is_primary')->default(false);
-
+            // open hours
+            $table->json('hours')->nullable();
             $table->foreignId('company_id')->constrained();
             $table->timestamps();
         });

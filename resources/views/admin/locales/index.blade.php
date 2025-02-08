@@ -50,17 +50,24 @@
                                             <tr id="company-id-{{ $company->id }}"
                                                 data-locales-account="{{ $company->locales->count() }}">
                                                 <td>
+                                                    <a href="{{ route('users.edit', $company->owner->id) }}"
+                                                        class="text-decoration-none">
+                                                        <h4 class="mb-4 d-flex align-items-center">
+                                                            <div class="bg-dark rounded-circle d-inline-block me-3"
+                                                                style="width: 50px; height: 50px;">
 
-                                                    <h4 class="mb-4 d-flex align-items-center">
-                                                        <div class="bg-light rounded-circle d-inline-block me-3"
-                                                            style="width: 50px; height: 50px;">
-                                                            <img src="{{ $company->logoURL }}" alt=""
-                                                                class="img-fluid rounded-circle">
+                                                                @if ($company->logo)
+                                                                    <img src="{{ $company->logoURL }}" alt=""
+                                                                        class="img-fluid rounded-circle">
+                                                                @endif
 
-                                                        </div>
-                                                        {{ $company->name }}
-                                                        <small class="text-muted"> &nbsp;|&nbsp;
-                                                            {{ $company->category }}</small>
+
+
+                                                            </div>
+                                                    </a>
+                                                    {{ $company->name }}
+                                                    <small class="text-muted"> &nbsp;|&nbsp;
+                                                        {{ $company->category }}</small>
                                                     </h4>
                                                     <div>
                                                         <h5> {{ $company->owner->fullname }}</h5>
@@ -76,7 +83,9 @@
                                                     <ul class="list-group list-group-flush">
                                                         @foreach ($company->locales as $locale)
                                                             <a href="{{ route('locales.edit', $locale->id) }}"
-                                                                class="list-group-item list-group-item-action">
+                                                                class="list-group-item list-group-item-action
+                                                                @if ($locale->is_primary) border border-success @endif
+                                                                ">
                                                                 {!! $locale->displayName !!}
                                                             </a>
                                                         @endforeach

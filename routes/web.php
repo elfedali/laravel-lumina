@@ -49,8 +49,8 @@ Route::middleware('auth')
       ->name('locales.create');
     Route::post('/locales', [App\Http\Controllers\AdminLocaleController::class, 'store'])
       ->name('locales.store');
-    Route::get('/locales/{locale}', [App\Http\Controllers\AdminLocaleController::class, 'show'])
-      ->name('locales.show');
+    // Route::get('/locales/{locale}', [App\Http\Controllers\AdminLocaleController::class, 'show'])
+    //   ->name('locales.show');
     Route::get('/locales/{locale}/edit', [App\Http\Controllers\AdminLocaleController::class, 'edit'])
       ->name('locales.edit');
     Route::put('/locales/{locale}', [App\Http\Controllers\AdminLocaleController::class, 'update'])

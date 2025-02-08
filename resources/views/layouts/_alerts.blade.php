@@ -25,13 +25,13 @@
  @endif
 
  @if ($errors->any())
-     <div class="alert alert-dark  text-center alert-dismissible fade show" role="alert">
+     <div class="alert alert-dark alert-dismissible fade show" role="alert">
          <strong>
              Errors
          </strong>
          <ol class="mb-0">
              @foreach ($errors->all() as $error)
-                 <li>{{ $error }}</li>
+                 <li data-info="{{ var_dump($error) }}">{{ $error }}</li>
              @endforeach
          </ol>
          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

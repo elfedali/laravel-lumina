@@ -34,6 +34,7 @@ class Locale extends Model
 
         'is_primary',
         'cover',
+        'hours', # JSON
         'company_id',
     ];
 
@@ -46,6 +47,7 @@ class Locale extends Model
         'id' => 'integer',
         'is_primary' => 'boolean',
         'company_id' => 'integer',
+        'hours' => 'array',
     ];
 
     public function company(): BelongsTo

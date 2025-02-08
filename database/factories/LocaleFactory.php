@@ -21,6 +21,20 @@ class LocaleFactory extends Factory
      */
     public function definition(): array
     {
+
+        $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+        $hours = [];
+
+        foreach ($days as $day) {
+            $open = fake()->boolean();
+            $hours[$day] = [
+                'open' => $open,
+                'start' => $open ? fake()->time('H:i', '09:00') : null,
+                'end' => $open ? fake()->time('H:i', '21:00') : null,
+            ];
+        }
+
+
         return [
             'name' => null,
             'slug' => null,
@@ -34,8 +48,9 @@ class LocaleFactory extends Factory
 
             'phone' => fake()->phoneNumber(),
             'phone2' => fake()->phoneNumber(),
+            'hours' => $hours,
 
-            'is_primary' => fake()->boolean(),
+            'is_primary' => false,
             'company_id' => fake()->randomElement(Company::pluck('id')->toArray()),
         ];
     }

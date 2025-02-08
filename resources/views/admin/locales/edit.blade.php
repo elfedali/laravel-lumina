@@ -25,6 +25,18 @@
                     @include('admin.locales._form', ['isEdit' => true])
 
                 </form>
+
+                {{-- delete --}}
+
+                <form action="{{ route('locales.destroy', $locale->id) }}" method="POST" class="d-inline" id="delete-form">
+
+                    @csrf
+                    @method('DELETE')
+                </form>
+
+
+
+
             </div>
         </div>
         <!-- /.row -->

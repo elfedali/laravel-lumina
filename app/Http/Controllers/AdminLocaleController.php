@@ -2,39 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AdminUserStoreRequest;
-use App\Http\Requests\AdminUserUpdateRequest;
+use App\Http\Requests\AdminLocaleStoreRequest;
+use App\Http\Requests\AdminLocaleUpdateRequest;
 use App\Models\Company;
 use App\Models\Locale;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Intervention\Image\ImageManager;
 
-
 class AdminLocaleController extends Controller
 {
-    const LOGO_SIZE = 400;
-    const LOGO_QUALITY = 60;
-    const LOGO_PATH = 'logos';
+    const COVER_SIZE = 400;
+    const COVER_QUALITY = 60;
+    const COVER_PATH = 'covers';
 
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request): View
     {
+        // validate the search query
+        $request->validate([
+            'search' => 'nullable|string|max:255',
+        ]);
+
         $search = $request->get('search');
         $companies = Company::with(['locales' => function ($query) use ($search) {
             if ($search) {
                 $query->where('name', 'like', "%$search%")
                     ->orWhere('address', 'like', "%$search%")
-                    ->orWhere('city', 'like', "%$search%");
+                    ->orWhere('city', 'like', "%$search%")
+                    ->orWhere('neighborhood', 'like', "%$search%")
+                    ->orWhere('phone', 'like', "%$search%")
+                    ->orWhere('phone2', 'like', "%$search%");
             }
-        }])->get();
+            $query->latest();
+        }])
 
-
+            ->get();
 
         return view('admin.locales.index', compact('companies'));
     }
@@ -44,57 +51,48 @@ class AdminLocaleController extends Controller
      */
     public function create(): View
     {
-        return view('admin.locales.create');
+        $companies = Company::all();
+        return view('admin.locales.create', compact('companies'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AdminUserStoreRequest $request)
+    public function store(AdminLocaleStoreRequest $request)
     {
         DB::transaction(function () use ($request) {
-            $user = User::create($request->validated());
-
-            $companyData = $request->validated()['company'];
-            $companyData['logo'] = $this->handleCompanyLogo($request);
-
-            $user->company()->create(array_merge($companyData, ['owner_id' => $user->id]));
+            $localeData = $request->validated();
+            $localeData['cover'] = $this->handleCoverUpload($request);
+            $localeData['is_primary'] = true;
+            $locale = Locale::create($localeData);
         });
 
-        return redirect()->route('locales.index')->with('success', 'Utilisateur créé avec succès');
+        return redirect()->route('locales.index')->with('success', 'Le local a été créé avec succès');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    // public function show(Locale $locale): View
-    // {
-    //     return view('admin.locales.show', compact('locale'));
-    // }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Locale $locale): View
     {
+        ray($locale);
+
         return view('admin.locales.edit', compact('locale'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(AdminUserUpdateRequest $request, Locale $locale)
+    public function update(AdminLocaleUpdateRequest $request, Locale $locale)
     {
         DB::transaction(function () use ($request, $locale) {
-            $locale->update($request->validated());
+            $localeData = $request->validated();
+            $localeData['cover'] = $this->handleCoverUpload($request, $locale);
 
-            $companyData = $request->validated()['company'];
-            $companyData['logo'] = $this->handleCompanyLogo($request, $locale->company);
-
-            $locale->company()->update($companyData);
+            $locale->update($localeData);
         });
 
-        return redirect()->route('users.edit', $locale)->with('success', 'Utilisateur mis à jour avec succès');
+        return redirect()->route('locales.edit', $locale)->with('success', 'Le local a été mis à jour avec succès');
     }
 
     /**
@@ -102,54 +100,48 @@ class AdminLocaleController extends Controller
      */
     public function destroy(Locale $locale)
     {
-        /**
-         * @var User $user
-         */
-        $user = auth()->user();
-        if ($user->isAdmin()) {
-            return redirect()->route('locales.index')->with('error', 'Vous ne pouvez pas supprimer un administrateur');
-        }
+        $this->deleteCover($locale);
 
-        $this->deleteCompanyLogo($user);
+        $locale->delete();
 
-        $user->delete();
-
-        return redirect()->route('locales.index')->with('success', 'Utilisateur supprimé avec succès');
+        return redirect()->route('locales.index')->with('success', 'Le local a été supprimé avec succès');
     }
 
     /**
-     * Handle company logo upload.
+     * Handle cover upload.
      */
-    private function handleCompanyLogo(Request $request, User $user = null): ?string
+    private function handleCoverUpload(Request $request, Locale $locale = null): ?string
     {
-        if (!$request->hasFile('company.logo')) {
-            return $user?->company->logo ?? null;
+        if (!$request->hasFile('cover')) {
+            return $locale?->cover ?? null;
         }
 
-        // Delete old logo if updating
-        $this->deleteCompanyLogo($user);
+        // Delete old cover if updating
+        $this->deleteCover($locale);
 
-        $logo = $request->file('company.logo');
+        $cover = $request->file('cover');
         $manager = new ImageManager(new \Intervention\Image\Drivers\Gd\Driver());
-        $image = $manager->read($logo)->scale(width: self::LOGO_SIZE);
+        $image = $manager->make($cover)->resize(self::COVER_SIZE, null, function ($constraint) {
+            $constraint->aspectRatio();
+        })->encode('jpg', self::COVER_QUALITY);
 
         $year = date('Y');
         $month = date('m');
-        $logoPath = self::LOGO_PATH . "/{$year}/{$month}/" . uniqid() . '.jpg';
+        $coverPath = self::COVER_PATH . "/{$year}/{$month}/" . uniqid() . '.jpg';
 
-        Storage::disk('public')->put($logoPath, $image->toJpeg(self::LOGO_QUALITY));
+        Storage::disk('public')->put($coverPath, (string) $image);
 
-        return $logoPath;
+        return $coverPath;
     }
 
     /**
-     * Delete company logo if it exists.
+     * Delete cover if it exists.
      */
-    private function deleteCompanyLogo(?User $user): void
+    private function deleteCover(?Locale $locale): void
     {
-        if ($user?->company?->logo) {
+        if ($locale?->cover) {
             try {
-                Storage::disk('public')->delete($user->company->logo);
+                Storage::disk('public')->delete($locale->cover);
             } catch (\Exception $e) {
                 // Log error or handle silently
             }

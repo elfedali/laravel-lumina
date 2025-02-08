@@ -116,5 +116,3 @@ models:
   #   person_id: id foreign:persons
   #   booking_id: id foreign:bookings nullable # Link payment to booking
 
-
-    

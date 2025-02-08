@@ -75,7 +75,7 @@
                 <div class=" col-lg mb-3">
                     <div class="form-floating">
 
-                        <input type="password" name="password" id="password"
+                        <input type="text" name="password" id="password"
                             class="form-control @error('password') is-invalid @enderror"
                             placeholder="{{ __('Mot de passe') }}" autocomplete="off"
                             @if ($isEdit) disabled @endif>

@@ -2,7 +2,7 @@
 
     <a class="navbar-brand" href="{{ route('dashboard') }}">
         <span class="fw-semibold fs-2 ps-4 ">
-            Lumina
+            {{ auth()->user()->company->name ?? 'Pas de salon' }}
         </span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

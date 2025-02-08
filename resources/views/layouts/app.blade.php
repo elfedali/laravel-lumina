@@ -27,7 +27,7 @@
 
 </head>
 
-<body>
+<body x-data="{ sidebarOpen: true }">
 
 
     <div class="layout layout-nav-side">
@@ -87,7 +87,7 @@
     <!-- /.container-fluid -->
 
     @livewireScripts
-
+    {{-- <script src="//unpkg.com/alpinejs" defer></script> --}}
     @yield('scripts')
 </body>
 
