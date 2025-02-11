@@ -45,7 +45,9 @@ class Company extends Model
 
     public function locales(): HasMany
     {
-        return $this->hasMany(Locale::class);
+        return $this->hasMany(Locale::class)
+            ->orderBy('is_primary', 'desc')
+            ->orderBy('created_at', 'desc');
     }
 
     public function owner(): BelongsTo

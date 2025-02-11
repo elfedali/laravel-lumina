@@ -41,13 +41,33 @@
                             </a>
                         </div>
                     </div>
-                    <div class="px-2 py-1 rounded bg-white cursor-pointer ">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
-                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="1.5"
-                                d="M12 5.92A.96.96 0 1 0 12 4a.96.96 0 0 0 0 1.92m0 7.04a.96.96 0 1 0 0-1.92a.96.96 0 0 0 0 1.92M12 20a.96.96 0 1 0 0-1.92a.96.96 0 0 0 0 1.92" />
-                        </svg>
-                    </div>
+                    {{-- ------- DROP DOWN ----- --}}
+                    <section>
+                        <div class="dropdown">
+                            <button class="btn btn-light p-1 _dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <x-icon_dots />
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <button class="dropdown-item" type="button">
+                                        <x-icon_edit />
+                                        Modifier
+                                    </button>
+                                </li>
+                                @if (!$locale->is_primary)
+                                    <li>
+                                        <button class="dropdown-item text-danger" type="button">
+                                            <x-icon_trash />
+                                            Supprimer
+                                        </button>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+
+                    </section>
+                    {{-- ------- END____DROP DOWN ----- --}}
                 </li>
             @endforeach
             <li>
