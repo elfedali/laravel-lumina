@@ -86,6 +86,7 @@
     </div>
     <!-- /.container-fluid -->
 
+    @include('inc.modal')
     @livewireScripts
     {{-- <script src="//unpkg.com/alpinejs" defer></script> --}}
     @yield('scripts')

@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('test', function () {
+  return session()->get(\App\Models\Locale::ACTIVE_LOCALE);
+});
 
 Auth::routes();
 
@@ -57,4 +60,8 @@ Route::middleware('auth')
       ->name('locales.update');
     Route::delete('/locales/{locale}', [App\Http\Controllers\AdminLocaleController::class, 'destroy'])
       ->name('locales.destroy');
+
+    // set Active locale 
+    Route::get('/locales/{locale}/set-active', [App\Http\Controllers\ActiveLocaleController::class, 'setActive'])
+      ->name('locales.set-active');
   });

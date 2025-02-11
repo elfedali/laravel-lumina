@@ -10,6 +10,9 @@ class Locale extends Model
 {
     use HasFactory;
 
+    const ACTIVE_LOCALE_NAME = 'activeLocaleName';
+    const ACTIVE_LOCALE = 'activeLocaleId';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -60,5 +63,11 @@ class Locale extends Model
     public function getDisplayNameAttribute(): string
     {
         return $this->address . ' ' . $this->neighborhood . ', <br><span class="fw-semibold">' . $this->city . '</span>';
+    }
+
+    // displayName2
+    public function getDisplayName2Attribute(): string
+    {
+        return $this->address . ' ' . $this->neighborhood . ', ' . $this->city;
     }
 }
