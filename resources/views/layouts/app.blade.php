@@ -86,7 +86,12 @@
     </div>
     <!-- /.container-fluid -->
 
-    @include('inc.modal')
+
+
+    @include('inc.modal-edit-company')
+    {{-- @include('inc.modal-edit-locale') --}}
+    @include('inc.modal-locale')
+
     @livewireScripts
     {{-- <script src="//unpkg.com/alpinejs" defer></script> --}}
     @yield('scripts')
