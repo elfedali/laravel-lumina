@@ -19,7 +19,6 @@ class ActiveLocaleController extends Controller
         session()->put(Locale::ACTIVE_LOCALE_NAME, $locale->displayName2);
         session()->put(Locale::ACTIVE_LOCALE, $locale->id);
 
-        logger('Active locale set to ' . $locale);
         return redirect()->route('dashboard')->with('success', $locale->displayName2 . 'est maintenant actif.');
     }
 }
