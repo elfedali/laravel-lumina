@@ -10,9 +10,6 @@
             <div class="modal-body">
                 {{-- --------------------------START------------------------- --}}
 
-
-
-
                 <!-- Informations sur le propriétaire -->
 
                 <div class="card">
@@ -100,16 +97,82 @@
                         <hr>
                         <div class="row">
                             <div class="col-lg">
-                                {{-- ici error multiple alpine instance are runing --}}
-                                {{-- <x-horaires :hours="$locale->hours ?? null" /> --}}
+
+
+
+
+                                @php
+                                    $days = [
+                                        'monday' => 'Lundi',
+                                        'tuesday' => 'Mardi',
+                                        'wednesday' => 'Mercredi',
+                                        'thursday' => 'Jeudi',
+                                        'friday' => 'Vendredi',
+                                        'saturday' => 'Samedi',
+                                        'sunday' => 'Dimanche',
+                                    ];
+                                @endphp
+
+                                <section x-data="{
+                                    days: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
+                                    hours: @entangle('hours')
+                                }">
+
+
+                                    <div class="mb-4">
+                                        <h4>Horaires d'ouverture</h4>
+                                        <p class="text-muted">Entrez vos propres horaires d'ouverture.</p>
+                                    </div>
+                                    @error('hours')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                    @error('hours.*')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+
+                                    @foreach ($days as $day => $label)
+                                        <div class="row mb-3">
+                                            <div class="col-md-2">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="{{ $day }}_open"
+                                                        wire:model="hours.{{ $day }}.open" value="1"
+                                                        x-model="hours.{{ $day }}.open"
+                                                        x-on:change="if (hours.{{ $day }}.open) { hours.{{ $day }}.start = '09:00'; hours.{{ $day }}.end = '21:00'; }">
+                                                    <label class="form-check-label" for="{{ $day }}_open">
+                                                        <span class="-lead"> {{ $label }}</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="input-group" x-show="hours.{{ $day }}.open">
+                                                    <input type="time" class="form-control"
+                                                        id="{{ $day }}_start"
+                                                        wire:model="hours.{{ $day }}.start"
+                                                        x-bind:disabled="!hours.{{ $day }}.open"
+                                                        x-model="hours.{{ $day }}.start">
+                                                </div>
+                                                <span class="text-muted"
+                                                    x-show="!hours.{{ $day }}.open">Indisponible</span>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="input-group" x-show="hours.{{ $day }}.open">
+                                                    <input type="time" class="form-control"
+                                                        id="{{ $day }}_end"
+                                                        wire:model="hours.{{ $day }}.end"
+                                                        x-bind:disabled="!hours.{{ $day }}.open"
+                                                        x-model="hours.{{ $day }}.end">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </section>
+
                             </div>
                         </div>
 
                     </div>
                 </div>
-
-
-
 
 
                 {{-- --------------------------START------------------------- --}}

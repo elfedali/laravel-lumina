@@ -15,9 +15,21 @@ class EditLocale extends Component
     public $phone;
     public $phone2;
 
-    public $hours;
-    // mount
-    public function mount() {}
+    public $hours = [];
+
+    // Initialize the hours array with default values
+    public function mount()
+    {
+        $this->hours = [
+            'monday' => ['open' => false, 'start' => '09:00', 'end' => '21:00'],
+            'tuesday' => ['open' => false, 'start' => '09:00', 'end' => '21:00'],
+            'wednesday' => ['open' => false, 'start' => '09:00', 'end' => '21:00'],
+            'thursday' => ['open' => false, 'start' => '09:00', 'end' => '21:00'],
+            'friday' => ['open' => false, 'start' => '09:00', 'end' => '21:00'],
+            'saturday' => ['open' => false, 'start' => '09:00', 'end' => '21:00'],
+            'sunday' => ['open' => false, 'start' => '09:00', 'end' => '21:00'],
+        ];
+    }
 
     public function save()
     {
@@ -30,10 +42,10 @@ class EditLocale extends Component
             'phone' => 'required|string|max:255',
             'phone2' => 'nullable|string|max:255',
 
-            // 'hours' => 'required|array',
-            // 'hours.*.open' => 'required|boolean',
-            // 'hours.*.start' => 'required_if:hours.*.open,true|date_format:H:i',
-            // 'hours.*.end' => 'required_if:hours.*.open,true|date_format:H:i|after:hours.*.start',
+            'hours' => 'required|array',
+            'hours.*.open' => 'required|boolean',
+            'hours.*.start' => 'required_if:hours.*.open,true|date_format:H:i',
+            'hours.*.end' => 'required_if:hours.*.open,true|date_format:H:i|after:hours.*.start',
 
         ]);
 

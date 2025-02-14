@@ -67,7 +67,3 @@
         </div>
     @endforeach
 </section>
-
-@section('scripts')
-    <script src="//unpkg.com/alpinejs" defer></script>
-@endsection
