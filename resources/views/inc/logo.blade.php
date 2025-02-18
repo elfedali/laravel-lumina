@@ -4,7 +4,9 @@
             {{ auth()->user()->company->name ?? 'Pas de salon' }}
         </span>
     </a>
-    <span class="icon-edit-company" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#appModal">
+    <button class="btn btn-link p-0" id="btnEditCompany" data-id="{{ auth()->user()->company->id }}"
+        data-name="{{ auth()->user()->company->name }}" data-category="{{ auth()->user()->company->category }}"
+        data-logo="{{ auth()->user()->company->logo ?? null }}">
         <x-icon_edit />
-    </span>
+    </button>
 </div>

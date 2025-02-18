@@ -19,15 +19,14 @@
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
 
-
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    @livewireStyles
 
 </head>
 
-<body x-data="{ sidebarOpen: true }">
+<body x-data="{ modalOpen: false }">
 
 
     <div class="layout layout-nav-side">
@@ -86,15 +85,10 @@
     </div>
     <!-- /.container-fluid -->
 
-
-
-    @include('inc.modal-edit-company')
-    {{-- @include('inc.modal-edit-locale') --}}
-    @include('inc.modal-locale')
-
-    @livewireScripts
-    {{-- <script src="//unpkg.com/alpinejs" defer></script> --}}
+    @include('inc.modal-company')
+    <script src="//unpkg.com/alpinejs" defer></script>
     @yield('scripts')
+
 </body>
 
 </html>

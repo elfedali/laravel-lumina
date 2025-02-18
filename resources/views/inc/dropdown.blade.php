@@ -17,8 +17,7 @@
 
                 @foreach ($locales as $locale)
                     <li
-                        class="dropdown-item text-sm
-                   d-flex justify-content-between align-items-center
+                        class="dropdown-item text-sm d-flex justify-content-between align-items-center
                 
                 @if ($locale->id == session()->get(\App\Models\Locale::ACTIVE_LOCALE)) active @endif">
                         <div class="d-flex align-items-center">
@@ -49,16 +48,17 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <button class="dropdown-item" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#appModal">
+                                        {{-- trigger a livewire edit-locale --}}
+                                        <button class="dropdown-item btn_edit_locale" type="button"
+                                            id="edit-locale-{{ $locale->id }}" data-id="{{ $locale->id }}">
                                             <x-icon_edit />
                                             Modifier
                                         </button>
                                     </li>
                                     @if (!$locale->is_primary)
                                         <li>
-                                            <button class="dropdown-item text-danger" type="button"
-                                                data-bs-toggle="modal" data-bs-target="#appModal">
+                                            {{-- trigger a liveware delete-locale --}}
+                                            <button class="dropdown-item text-danger" type="button">
                                                 <x-icon_trash />
                                                 Supprimer
                                             </button>
