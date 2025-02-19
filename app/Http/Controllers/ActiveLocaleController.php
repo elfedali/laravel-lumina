@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Locale;
-use Illuminate\Http\Request;
 
 class ActiveLocaleController extends Controller
 {

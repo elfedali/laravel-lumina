@@ -5,7 +5,8 @@
  */
 ?>
 
-<form id="formUpdateCompany" method="POST" action="{{ route('change-company', ['companyId' => $company->id]) }}">
+<form id="formUpdateCompany" method="POST" action="{{ route('change-company', ['companyId' => $company->id]) }}"
+    enctype="multipart/form-data">
 
     <div class="modal-content">
         <div class="modal-header">
@@ -17,6 +18,7 @@
         <div class="modal-body">
 
             <div class="row">
+                {{-- name --}}
                 <div class=" col-lg mb-3">
                     <div class="form-floating">
                         <input type="text" name='name' value="{{ $company->name }}" id="company_name"
@@ -26,7 +28,7 @@
                         <div class="invalid-feedback company-name-error"></div>
                     </div>
                 </div>
-
+                {{-- category --}}
                 <div class=" col-lg mb-3">
                     <div class="form-floating">
 
@@ -37,7 +39,29 @@
                         <div class="invalid-feedback company-category-error"></div>
                     </div>
                 </div>
+
+
             </div>
+            <div class="row">
+                {{-- logo --}}
+                <div class=" col-lg mb-3">
+                    <div class="">
+
+                        <div>
+                            <img src="{{ $company->LogoURL }}" alt="" class="img-fluid rounded-lg"
+                                style="width:100px; height: auto;">
+                        </div>
+
+                        <label for="company_logo" class="form-label">{{ __('Logo du salon') }}
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="file" name="logo" id="company_logo" class="form-control "
+                            accept="image/png, image/jpeg, image/jpg">
+                        <div class="invalid-feedback company-logo-error"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

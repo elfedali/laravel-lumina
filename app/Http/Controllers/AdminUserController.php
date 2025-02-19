@@ -5,18 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AdminUserStoreRequest;
 use App\Http\Requests\AdminUserUpdateRequest;
 use App\Models\User;
+use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
-use Intervention\Image\ImageManager;
 
 class AdminUserController extends Controller
 {
+    use UploadTrait;
     const LOGO_SIZE = 400;
     const LOGO_QUALITY = 60;
     const LOGO_PATH = 'logos';
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -53,7 +57,7 @@ class AdminUserController extends Controller
             $user = User::create($request->validated());
 
             $companyData = $request->validated()['company'];
-            $companyData['logo'] = $this->handleCompanyLogo($request);
+            $companyData['logo'] = $this->handleCompanyLogo($request); // Use trait method
 
             $user->company()->create(array_merge($companyData, ['owner_id' => $user->id]));
         });
@@ -86,7 +90,7 @@ class AdminUserController extends Controller
             $user->update($request->validated());
 
             $companyData = $request->validated()['company'];
-            $companyData['logo'] = $this->handleCompanyLogo($request, $user);
+            $companyData['logo'] = $this->handleCompanyLogo($request, $user); // Use trait method
 
             $user->company()->update($companyData);
         });
@@ -103,7 +107,7 @@ class AdminUserController extends Controller
             return redirect()->route('users.index')->with('error', 'Vous ne pouvez pas supprimer un administrateur');
         }
 
-        $this->deleteCompanyLogo($user);
+        $this->deleteCompanyLogo($user); // Still needed for eventual cleanup
 
         $user->delete();
 
@@ -111,41 +115,21 @@ class AdminUserController extends Controller
     }
 
     /**
-     * Handle company logo upload.
+     * Handle company logo upload using the trait.
      */
     private function handleCompanyLogo(Request $request, User $user = null): ?string
     {
-        if (!$request->hasFile('company.logo')) {
-            return $user?->company->logo ?? null;
-        }
 
-        // Delete old logo if updating
-        $this->deleteCompanyLogo($user);
-
-        $logo = $request->file('company.logo');
-        $manager = new ImageManager(new \Intervention\Image\Drivers\Gd\Driver());
-        $image = $manager->read($logo)->scale(width: self::LOGO_SIZE);
-
-        $year = date('Y');
-        $month = date('m');
-        $logoPath = self::LOGO_PATH . "/{$year}/{$month}/" . uniqid() . '.jpg';
-
-        Storage::disk('public')->put($logoPath, $image->toJpeg(self::LOGO_QUALITY));
-
-        return $logoPath;
+        return $this->upload($request, 'company.logo', self::LOGO_PATH, self::LOGO_SIZE, self::LOGO_QUALITY, $user?->company?->logo);
     }
 
     /**
-     * Delete company logo if it exists.
+     * Delete company logo if it exists.  (Still needed for cleanup during updates/deletes)
      */
     private function deleteCompanyLogo(?User $user): void
     {
         if ($user?->company?->logo) {
-            try {
-                Storage::disk('public')->delete($user->company->logo);
-            } catch (\Exception $e) {
-                // Log error or handle silently
-            }
+            $this->deleteFile($user->company->logo); // Use the trait's deleteFile method
         }
     }
 }

@@ -4,8 +4,7 @@ use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,35 +26,7 @@ Route::get('/changes/companies/{companyId}/edit', function ($companyId) {
   return view('ajax.modal.edit-company-content', compact('company'));
 });
 
-Route::post('/changes/companies/{companyId}/update', function (Request $request, $companyId) {
-
-  $validator = Validator::make($request->all(), [
-    'name' => 'required|string',
-    'category' => 'required|string',
-  ]);
-
-  if ($validator->fails()) {
-    return response()->json([
-      'success' => false,
-      'errors' => $validator->errors(), // Return validation errors
-    ], 422); // Use 422 Unprocessable Entity for validation errors
-  }
-
-  $company = Company::findOrFail($companyId);
-  $company->update([
-    'name' => $request->input('name'),
-    'category' => $request->input('category'),
-  ]);
-
-  Session::flash('success', 'Le salon a été mis à jour avec succès');
-
-  return response()->json(
-    [
-      "success" => true,
-      "message" => "Le salon a été mis à jour avec succès"
-    ]
-  );
-})->name("change-company");
+Route::post('/changes/companies/{companyId}/update', [App\Http\Controllers\ChangesController::class, 'update'])->name("change-company");
 
 
 Route::get('/modal/edit-locale-content', function () {

@@ -65,6 +65,7 @@ set the selected Locale on the session as this one , go to the dashboard
 //     }
 
 // });
+
 $(function () {
     // Cache frequently used selectors
     const $btnEditCompany = $("#btnEditCompany");
@@ -113,6 +114,8 @@ $(function () {
             const $categoryError = $(".company-category-error");
             const $companyNameInput = $("#company_name");
             const $companyCategoryInput = $("#company_category");
+            const $companyLogoInput = $("#company_logo");
+            const $logoError = $(".company-logo-error");
 
             // Disable the submit button to prevent multiple submissions
             $submitButton.prop("disabled", true);
@@ -133,6 +136,7 @@ $(function () {
                 },
                 processData: false,
                 contentType: false,
+                enctype: "multipart/form-data",
                 success: function (result) {
                     // Handle success response
                     modal.hide();
@@ -152,6 +156,10 @@ $(function () {
                                 xhr.responseJSON.errors.category[0]
                             );
                             $companyCategoryInput.addClass("is-invalid");
+                        }
+                        if (xhr.responseJSON.errors.logo) {
+                            $logoError.text(xhr.responseJSON.errors.logo[0]);
+                            $companyLogoInput.addClass("is-invalid");
                         }
                     } else {
                         // Handle non-validation errors (e.g., 500 server errors)
