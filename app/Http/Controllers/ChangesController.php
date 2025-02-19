@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Traits\ActiveTrait;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
+
 class ChangesController extends Controller
 {
     use UploadTrait;
+    use ActiveTrait;
 
     const LOGO_SIZE = 400; // Define logo size
     const LOGO_QUALITY = 60; // Define logo quality
@@ -76,6 +79,55 @@ class ChangesController extends Controller
             self::LOGO_SIZE,
             self::LOGO_QUALITY,
             $company->logo // Pass the existing logo path for deletion during update
+        );
+    }
+
+
+
+    public function storeLocale(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'address' => 'required|string',
+            'neighborhood' => 'required|string',
+            'city' => 'required|string',
+            'phone' => 'required|string',
+            'phone2' => 'nullable|string',
+
+            'hours' => 'required|array',
+            'hours.*.open' => 'required|boolean',
+            'hours.*.start' => 'required_if:hours.*.open,true|date_format:H:i',
+            'hours.*.end' => 'required_if:hours.*.open,true|date_format:H:i|after:hours.*.start',
+
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $locale =   \App\Models\Locale::create([
+            'address' => $request->input('address'),
+            'neighborhood' => $request->input('neighborhood'),
+            'city' => $request->input('city'),
+            'phone' => $request->input('phone'),
+            'phone2' => $request->input('phone2') ?? null,
+            'hours' => $request->input('hours') ?? null,
+            'company_id' => auth()->user()->company->id,
+            'is_primary' => false,
+        ]);
+
+        // message 
+        session::flash('success', 'Le salon a été sauvegardé avec succès');
+
+        return response()->json(
+            [
+                "success" => true,
+                "message" => "Le salon a été sauvegardé avec succès",
+                "locale" => $locale
+            ],
+            200
         );
     }
 }

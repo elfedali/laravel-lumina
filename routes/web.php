@@ -28,10 +28,30 @@ Route::get('/changes/companies/{companyId}/edit', function ($companyId) {
 
 Route::post('/changes/companies/{companyId}/update', [App\Http\Controllers\ChangesController::class, 'update'])->name("change-company");
 
+// /changes/locales/create
+Route::get('/changes/locales/create', function () {
+  return view('ajax.modal.create-locale-content');
+});
 
 Route::get('/modal/edit-locale-content', function () {
   return view('ajax.modal.edit-locale-content');
 });
+
+/**
+ * Save locale user by axios
+ */
+Route::post('/changes/locales/store', [App\Http\Controllers\ChangesController::class, 'storeLocale'])->name("changes.locales.store");
+
+/**
+ * Set lcoale active when it's called by the browser.
+ */
+Route::get('/locales/{locale}/set-active', [App\Http\Controllers\ActiveLocaleController::class, 'setActive'])
+  ->name('locales.set-active');
+/**
+ * This is when the user use the axios to set active it get json.
+ */
+Route::get('/locales/{locale}/set-active-json', [App\Http\Controllers\ActiveLocaleController::class, 'setActiveJson'])
+  ->name('locales.set-active-json');
 
 Auth::routes();
 
@@ -74,8 +94,4 @@ Route::middleware('auth')
       ->name('locales.update');
     Route::delete('/locales/{locale}', [App\Http\Controllers\AdminLocaleController::class, 'destroy'])
       ->name('locales.destroy');
-
-    // set Active locale 
-    Route::get('/locales/{locale}/set-active', [App\Http\Controllers\ActiveLocaleController::class, 'setActive'])
-      ->name('locales.set-active');
   });

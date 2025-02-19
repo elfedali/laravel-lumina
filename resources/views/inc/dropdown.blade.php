@@ -73,11 +73,10 @@
                 @endforeach
                 <li>
                     <hr class="dropdown-divider">
-                    <a class="dropdown-item text-sm" href="#" data-bs-toggle="modal"
-                        data-bs-target="#appModalLocale">
+                    <button class="dropdown-item" id="btnNewLocale">
                         <x-icon_add />
                         Ajouter une adresse
-                    </a>
+                    </button>
                 </li>
             </ul>
         </div>

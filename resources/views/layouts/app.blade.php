@@ -86,6 +86,7 @@
     <!-- /.container-fluid -->
 
     @include('inc.modal-company')
+    @include('inc.modal-locale')
     <script src="//unpkg.com/alpinejs" defer></script>
     @yield('scripts')
 
