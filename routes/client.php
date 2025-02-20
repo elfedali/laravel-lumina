@@ -56,7 +56,16 @@ Route::get('/changes/locales/{id}/destroy-form', function (Request $request, $id
 Route::delete('/changes/locales/{id}/destroy', [App\Http\Controllers\ChangesController::class, 'destroyLocale'])
     ->name("changes.locales.destroy");
 
+/**
+ * Edit locale 
+ */
+Route::get('/changes/locales/{id}/edit-form', function ($id) {
+    $locale = \App\Models\Locale::find($id);
+    return view('ajax.modal.edit-locale-content', compact('locale'));
+});
 
+Route::put('/changes/locales/{id}/update', [App\Http\Controllers\ChangesController::class, 'updateLocale'])
+    ->name("changes.locales.update");
 
 # ---- BOOKING
 Route::get('booking', function () {

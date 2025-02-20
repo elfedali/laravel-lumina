@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <h1>
-        staff
+    <h1 class="h4 mb-4">
+        Staff
     </h1>
 @endsection

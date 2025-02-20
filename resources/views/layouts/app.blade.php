@@ -88,6 +88,7 @@
     @include('inc.modal-company')
     @include('inc.modal-locale')
     @include('inc.modal-delete-locale')
+    @include('inc.modal-edit-locale')
     <script src="//unpkg.com/alpinejs" defer></script>
     @yield('scripts')
 

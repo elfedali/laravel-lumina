@@ -165,4 +165,48 @@ class ChangesController extends Controller
         //     "locale" => $locale
         // ], 200);
     }
+
+
+    public function updateLocale(Request $request, $id)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'address' => 'required|string',
+            'neighborhood' => 'required|string',
+            'city' => 'required|string',
+            'phone' => 'required|string',
+            'phone2' => 'nullable|string',
+
+            'hours' => 'required|array',
+            'hours.*.open' => 'required|boolean',
+            'hours.*.start' => 'required_if:hours.*.open,true|date_format:H:i',
+            'hours.*.end' => 'required_if:hours.*.open,true|date_format:H:i|after:hours.*.start',
+
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $locale = Locale::find($id);
+        $locale->update([
+            'address' => $request->input('address'),
+            'neighborhood' => $request->input('neighborhood'),
+            'city' => $request->input('city'),
+            'phone' => $request->input('phone'),
+            'phone2' => $request->input('phone2') ?? null,
+            'hours' => $request->input('hours') ?? null,
+        ]);
+
+        // message
+
+        return response()->json([
+            "success" => true,
+            "message" => "Le local a été mis à jour avec succès",
+            "locale" => $locale
+        ], 200);
+    }
 }
