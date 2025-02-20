@@ -71,3 +71,23 @@ $(function () {
         });
     }
 });
+
+$(function () {
+    // click on the edit button
+    $(document).on("click", "[id^='edit-locale-']", function () {
+        const localeId = $(this).data("id"); // Get ID from data-id attribute
+        console.log("Edit button clicked for locale ID:", localeId);
+    });
+    // click on the delete button
+    $(document).on("click", "[id^='delete-locale-']", function () {
+        const localeId = $(this).data("id"); // Get ID from data-id attribute
+        axios
+            .get(`/changes/locales/${localeId}/destroy-form`)
+            .then((response) => {
+                const modalDeleteLocale = new Modal("#appDeleteLocaleModal");
+                $("#appDeleteLocaleModalDialog").html(response.data);
+                modalDeleteLocale.show();
+            });
+        // open the modal
+    });
+});

@@ -8,7 +8,7 @@ use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-
+use \App\Models\Locale;
 
 class ChangesController extends Controller
 {
@@ -127,7 +127,42 @@ class ChangesController extends Controller
                 "message" => "Le salon a été sauvegardé avec succès",
                 "locale" => $locale
             ],
-            200
+            201
         );
+    }
+
+
+    /**
+     * 
+     * Delete locale by axios
+     */
+
+    public function destroyLocale($id)
+    {
+        $locale = \App\Models\Locale::findOrFail($id);
+
+        if (!$locale)
+            return response()->json([
+                "success" => false,
+                "message" => "Le local n'existe pas",
+            ]);
+
+        if ($locale->is_primary)
+            return response()->json([
+                "success" => false,
+                "message" => "Impossible de supprimer le local principal",
+            ]);
+
+        $locale->delete();
+
+        // message 
+
+        return redirect()->route('dashboard')->with('success', 'Le local a été supprimé avec succès');
+
+        // return response()->json([
+        //     "success" => true,
+        //     "message" => "Le local a été supprimé avec succès",
+        //     "locale" => $locale
+        // ], 200);
     }
 }

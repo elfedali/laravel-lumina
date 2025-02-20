@@ -49,7 +49,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         {{-- trigger a livewire edit-locale --}}
-                                        <button class="dropdown-item btn_edit_locale" type="button"
+                                        <button class="dropdown-item" type="button"
                                             id="edit-locale-{{ $locale->id }}" data-id="{{ $locale->id }}">
                                             <x-icon_edit />
                                             Modifier
@@ -58,7 +58,8 @@
                                     @if (!$locale->is_primary)
                                         <li>
                                             {{-- trigger a liveware delete-locale --}}
-                                            <button class="dropdown-item text-danger" type="button">
+                                            <button class="dropdown-item text-danger" type="button"
+                                                id="delete-locale-{{ $locale->id }}" data-id="{{ $locale->id }}">
                                                 <x-icon_trash />
                                                 Supprimer
                                             </button>
