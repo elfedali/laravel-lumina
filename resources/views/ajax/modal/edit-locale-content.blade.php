@@ -73,6 +73,7 @@
 
                 <div class="row">
                     <div class="col-lg">
+
                         <x-horaires :hours="$locale->hours ?? null" />
                     </div>
                 </div>
@@ -83,7 +84,7 @@
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Annuler
             </button>
-            <button type="button" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary">
                 Enregistrer les modifications
             </button>
         </div>

@@ -36,34 +36,41 @@
     @error('hours.*')
         <p class="text-danger">{{ $message }}</p>
     @enderror
+    {{-- show errors ajax --}}
+    <section class="hoursSection"></section>
 
     @foreach ($days as $day => $label)
-        <div class="row mb-3">
-            <div class="col-md-2">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="{{ $day }}_open"
-                        name="hours[{{ $day }}][open]" value="1" x-model="hours.{{ $day }}.open"
-                        x-on:change="if (hours.{{ $day }}.open) { hours.{{ $day }}.start = '09:00'; hours.{{ $day }}.end = '21:00'; }">
-                    <label class="form-check-label" for="{{ $day }}_open">
-                        <span class="-lead"> {{ $label }}</span>
-                    </label>
+        <section>
+
+
+            <div class="row mb-3">
+                <div class="col-md-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="{{ $day }}_open"
+                            name="hours[{{ $day }}][open]" value="1"
+                            x-model="hours.{{ $day }}.open"
+                            x-on:change="if (hours.{{ $day }}.open) { hours.{{ $day }}.start = '09:00'; hours.{{ $day }}.end = '21:00'; }">
+                        <label class="form-check-label" for="{{ $day }}_open">
+                            <span class="-lead"> {{ $label }}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group" x-show="hours.{{ $day }}.open">
+                        <input type="time" class="form-control" id="{{ $day }}_start"
+                            name="hours[{{ $day }}][start]" x-bind:disabled="!hours.{{ $day }}.open"
+                            x-model="hours.{{ $day }}.start">
+                    </div>
+                    <span class="text-muted" x-show="!hours.{{ $day }}.open">Indisponible</span>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group" x-show="hours.{{ $day }}.open">
+                        <input type="time" class="form-control" id="{{ $day }}_end"
+                            name="hours[{{ $day }}][end]" x-bind:disabled="!hours.{{ $day }}.open"
+                            x-model="hours.{{ $day }}.end">
+                    </div>
                 </div>
             </div>
-            <div class="col-md-5">
-                <div class="input-group" x-show="hours.{{ $day }}.open">
-                    <input type="time" class="form-control" id="{{ $day }}_start"
-                        name="hours[{{ $day }}][start]" x-bind:disabled="!hours.{{ $day }}.open"
-                        x-model="hours.{{ $day }}.start">
-                </div>
-                <span class="text-muted" x-show="!hours.{{ $day }}.open">Indisponible</span>
-            </div>
-            <div class="col-md-5">
-                <div class="input-group" x-show="hours.{{ $day }}.open">
-                    <input type="time" class="form-control" id="{{ $day }}_end"
-                        name="hours[{{ $day }}][end]" x-bind:disabled="!hours.{{ $day }}.open"
-                        x-model="hours.{{ $day }}.end">
-                </div>
-            </div>
-        </div>
+        </section>
     @endforeach
 </section>
