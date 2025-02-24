@@ -46,7 +46,8 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-start" aria-labelledby="triggerId">
 
-                        <a class="dropdown-item" href="#">Mon compte</a>
+                        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editAccountModal">Mon
+                            compte</button>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
@@ -89,6 +90,9 @@
     @include('inc.modal-locale')
     @include('inc.modal-delete-locale')
     @include('inc.modal-edit-locale')
+
+    @include('inc.modal-edit-account')
+
     <script src="//unpkg.com/alpinejs" defer></script>
     @yield('scripts')
 

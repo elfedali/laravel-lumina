@@ -46,6 +46,8 @@ class ChangesController extends Controller
             'category' => $request->input('category'),
         ]);
 
+        $company->save();
+
         // Handle logo upload if a new logo is provided
         if ($request->hasFile('logo')) {
             $logoPath = $this->handleLogoUpload($request, $company);
