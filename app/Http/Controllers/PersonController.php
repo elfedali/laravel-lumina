@@ -73,12 +73,14 @@ class PersonController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePersonRequest $request)
+    public function updateAjax(UpdatePersonRequest $request)
     {
         $person = Person::findOrFail($request->id);
         $person->update($request->all());
-
-        return redirect()->route('client.index')->with('success', 'Le client a été mis à jour avec succès');
+        session()->flash('success', 'Le client a été mis à jour avec succès');
+        return response()->json(
+            ['success' => 'Le client a été mis à jour avec succès', 'client' => $person]
+        );
     }
 
     /**

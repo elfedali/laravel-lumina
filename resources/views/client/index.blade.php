@@ -12,14 +12,27 @@
                                 <h5 class="h5">Liste des clients</h5>
                                 <p class="text-muted fw-light">Tous les clients de votre salon se trouvent ici.</p>
                             </div>
-                            <div>
-                                <a href="#" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#addClientModal">
-                                    <svg viewBox="0 0 24 24">
-                                        <path fill="currentColor" d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" />
-                                    </svg>
-                                    {{ __('Ajouter un client') }}
-                                </a>
+                            <div class="d-flex gap-2">
+                                <div class="me-2">
+                                    <div>
+                                        <form action="#" method="GET">
+                                            <div class="mb-3">
+                                                <input type="search" id="search" name="search" class="form-control"
+                                                    placeholder="{{ __('Rechercher un client...') }}"
+                                                    value="{{ request()->get('search') }}">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#addClientModal">
+                                        <svg viewBox="0 0 24 24">
+                                            <path fill="currentColor" d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" />
+                                        </svg>
+                                        {{ __('Ajouter un client') }}
+                                    </a>
+                                </div>
                             </div>
 
 
@@ -28,15 +41,7 @@
 
                         </header>
 
-                        <div>
-                            <form action="#" method="GET">
-                                <div class="mb-3">
-                                    <input type="search" id="search" name="search" class="form-control"
-                                        placeholder="{{ __('Rechercher un client...') }}"
-                                        value="{{ request()->get('search') }}">
-                                </div>
-                            </form>
-                        </div>
+
                         @if ($clients->count() > 0)
                             <div class="table-responsive">
                                 <table class="table">

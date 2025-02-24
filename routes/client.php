@@ -86,4 +86,4 @@ Route::get('service', function () {
 Route::get('client', [App\Http\Controllers\PersonController::class, 'index'])->name('client.index');
 Route::post('client', [App\Http\Controllers\PersonController::class, 'store'])->name('client.store');
 Route::delete('client', [App\Http\Controllers\PersonController::class, 'destroy'])->name('client.destroy');
-Route::put('client', [App\Http\Controllers\PersonController::class, 'update'])->name('client.update');
+Route::put('client', [App\Http\Controllers\PersonController::class, 'updateAjax'])->name('client.update');
