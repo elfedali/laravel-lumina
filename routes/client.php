@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -80,8 +81,9 @@ Route::get('staff', function () {
 Route::get('service', function () {
     return view('service.index');
 })->name('service.index');
-# ---- CLIENT
 
-Route::get('client', function () {
-    return view('client.index');
-})->name('client.index');
+# >>---- CLIENT
+Route::get('client', [App\Http\Controllers\PersonController::class, 'index'])->name('client.index');
+Route::post('client', [App\Http\Controllers\PersonController::class, 'store'])->name('client.store');
+Route::delete('client', [App\Http\Controllers\PersonController::class, 'destroy'])->name('client.destroy');
+Route::put('client', [App\Http\Controllers\PersonController::class, 'update'])->name('client.update');

@@ -16,12 +16,12 @@ class ActiveLocaleController extends Controller
     {
 
         $this->setActiveLocale($locale);
-        return $this->redirectToActiveLocale($locale->displayName2 . 'est maintenant actif.');
+        return $this->redirectToActiveLocale($locale->displayName2 . ' est maintenant actif.');
     }
 
     public function setActiveJson(Locale $locale)
     {
-        session()->flash('success', $locale->displayName2 . 'est maintenant actif.');
+        session()->flash('success', $locale->displayName2 . ' est maintenant actif.');
         $this->setActiveLocale($locale);
         return response()->json(['success' => true]);
     }

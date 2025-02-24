@@ -19,11 +19,14 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin'
         ]);
 
-        \App\Models\User::factory()->create([
-            'email' => 'client@lumina.ma',
-            'role' => 'user'
-        ]);
+        // \App\Models\User::factory()->create([
+        //     'email' => 'client@lumina.ma',
+        //     'role' => 'user'
+        // ]);
         \App\Models\Company::factory(10)->create();
         \App\Models\Locale::factory(60)->create();
+
+
+        \App\Models\Person::factory(150)->create();
     }
 }

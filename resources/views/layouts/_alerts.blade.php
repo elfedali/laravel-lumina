@@ -1,5 +1,5 @@
 @if (session('success'))
-    <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+    <div x-data="{ show: true }" x-show="show" _x-init="setTimeout(() => show = false, 5000)"
         class="alert bg-success text-white text-center alert-dismissible fade show" role="alert">
         {{ session('success') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
@@ -28,10 +28,10 @@
 @endif
 
 @if ($errors->any())
-    <div class="alert alert-dark alert-dismissible fade show" role="alert">
-        <strong>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{-- <strong>
             Errors
-        </strong>
+        </strong> --}}
         <ol class="mb-0">
             @foreach ($errors->all() as $error)
                 <li data-info="{{ var_dump($error) }}">{{ $error }}</li>
