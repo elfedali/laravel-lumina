@@ -42,7 +42,7 @@
                 <header class="py-2 px-3 bg-white d-flex justify-content-end align-items-center">
                     <a class="btn btn-link dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        {{ Auth::user()->fullname }}
+                        <span class="fs-14"> {{ Auth::user()->fullname }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-start" aria-labelledby="triggerId">
 
@@ -66,7 +66,7 @@
                 {{-- ALERTS --}}
                 @include('layouts._alerts')
             </div>
-            <main class="flex-fill py-4 px-3"> @yield('content')</main>
+            <main id="main-content" class="flex-fill py-4"> @yield('content')</main>
             <footer class="bg-white py-3">
                 <div class="container-fluid">
                     <div class="row">

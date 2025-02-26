@@ -77,6 +77,10 @@ Route::get('booking', function () {
 Route::get('staff', function () {
     return view('staff.index');
 })->name('staff.index');
+
+Route::get('stuff-function', function () {
+    return view('staff.function.index');
+})->name('staff.function');
 # ---- SERVICE
 Route::get('service', function () {
     return view('service.index');

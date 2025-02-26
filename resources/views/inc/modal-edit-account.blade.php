@@ -1,8 +1,3 @@
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editAccountModal">
-    Edit account
-</button>
-
 <!-- Modal -->
 <div class="modal fade" id="editAccountModal" tabindex="-1" aria-labelledby="editAccountModalLabel" aria-hidden="true">
     <form action="{{ route('edit-account-ajax') }}" id="editAccountForm" method="POST">

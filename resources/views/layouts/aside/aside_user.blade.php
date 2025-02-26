@@ -42,9 +42,30 @@
                 <li class="nav-item">
                     <a class="nav-link {{ Request::routeIs('staff.*') ? 'active' : '' }}"
                         href="{{ route('staff.index') }}">
-                            <x-icon_staff />
+                        <x-icon_staff />
                         <span>Gestion des collaborateurs</span>
                     </a>
+
+
+                    <ul>
+                        <li>
+                            <a class="nav-link {{ Request::routeIs('staff.index') ? 'active' : '' }}"
+                                href="{{ route('staff.index') }}">
+                                <span>Liste des collaborateurs</span>
+                            </a>
+                        </li>
+
+                        <li>
+
+                            <a class="nav-link {{ Request::routeIs('staff.function') ? 'active' : '' }}"
+                                href="{{ route('staff.function') }}">
+                                <span>
+                                    Liste des fonctions
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::routeIs('client.*') ? 'active' : '' }}"

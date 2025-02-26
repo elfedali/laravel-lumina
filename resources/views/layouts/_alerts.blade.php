@@ -1,7 +1,10 @@
 @if (session('success'))
     <div x-data="{ show: true }" x-show="show" _x-init="setTimeout(() => show = false, 5000)"
         class="alert bg-success text-white text-center alert-dismissible fade show" role="alert">
-        {{ session('success') }}
+        <span class="fs-14">
+            <span class="me-1"><x-icon_check /></span>
+            {{ session('success') }}
+        </span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
             x-on:click="show = false"></button>
     </div>
@@ -28,7 +31,7 @@
 @endif
 
 @if ($errors->any())
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show fs-14" role="alert">
         {{-- <strong>
             Errors
         </strong> --}}

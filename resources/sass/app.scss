@@ -1,9 +1,9 @@
 // Body
 $body-bg: #f5f5f5;
-$primary : #000;
-$font-family-sans-serif: 'Inter', sans-serif;
-$success: #65C644;
-$info: #428FE8;
+$primary: #000;
+$font-family-sans-serif: "Inter", sans-serif;
+$success: #65c644;
+$info: #428fe8;
 
 // 15px to rem = 0.9375rem
 $font-size-base: 0.9375rem;
@@ -15,7 +15,7 @@ $card-bg: #fff;
 $card-cap-bg: #f3f4f5;
 $card-border-width: 0;
 
-$card-border-radius: .8rem;
+$card-border-radius: 0.8rem;
 $input-bg: #fff;
 $table-bg: #fff;
 
@@ -34,7 +34,7 @@ $font-weight-bold: 600;
 $alert-border-radius: 0rem;
 $alert-border-width: 0;
 
-$dropdown-link-active-color:  #000;
+$dropdown-link-active-color: #000;
 $dropdown-link-active-bg: #ddd;
 $dropdown-link-hover-bg: #f5f5f5;
 $dropdown-link-active-bg: #f5f5f5;
@@ -44,23 +44,28 @@ $dropdown-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 $dropdown-border-width: 0;
 
-
 // $modal-backdrop-bg: rgba(181, 194, 248, 0.5);
 $modal-content-bg: #fff;
 
+$h1-font-size: $font-size-base * 2.5;
+$h2-font-size: $font-size-base * 2;
+$h3-font-size: $font-size-base * 1.75;
+$h4-font-size: $font-size-base * 1.5;
+$h5-font-size: $font-size-base * 1.25;
+$h6-font-size: 0.9rem;
+// 14px
+$nav-link-font-size: 0.875rem;
 
 // Bootstrap
-@import 'bootstrap/scss/bootstrap';
-@import '_dash.scss'; 
-
-
+@import "bootstrap/scss/bootstrap";
+@import "_dash.scss";
 
 //
 //
 // layouts.scss
 //
 //
-$sidebar_width: 320px;
+$sidebar_width: 290px;
 .main-container {
     > .container:last-child,
     > .container-fluid:last-child {
@@ -94,22 +99,21 @@ $sidebar_width: 320px;
             .navbar-nav {
                 flex-direction: column;
                 width: 100%;
-            }
-            .nav-link{
-                padding-left: 1rem;
-                &.active{
-                   position: relative;
-                   &::before{
-                       content: '';
-                       position: absolute;
-                       width: 0.2rem;
-                       height: 80%;
-                       background-color: $white;
-                       left: 0;
-                       top: 10%;
-                       border-radius: 0 0.5rem 0.5rem 0;
-                       
-                   }
+                & > .nav-item > .nav-link {
+                    padding-left: 1rem;
+                    &.active {
+                        position: relative;
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            width: 0.2rem;
+                            height: 80%;
+                            background-color: $white;
+                            left: 0;
+                            top: 10%;
+                            border-radius: 0 0.5rem 0.5rem 0;
+                        }
+                    }
                 }
             }
         }
@@ -155,42 +159,72 @@ $sidebar_width: 320px;
     }
 }
 
-
-
 //  btn
-.btn{
-    svg{
+.btn {
+    svg {
         width: 1.2rem;
         height: 1.2rem;
     }
 }
 
-
-label{
+label {
     font-weight: 400;
     font-size: 0.9375rem;
     opacity: 0.6;
 }
 
-
-.text-sm{
+.text-sm {
     font-size: 0.8125rem;
-
 }
-text-md{
+text-md {
     font-size: 1rem;
 }
-text-xs{
+text-xs {
     font-size: 0.75rem;
 }
 
-.cursor-pointer{
+.cursor-pointer {
     cursor: pointer;
 }
 
-
-.dropdown-menu{
+.dropdown-menu {
     border-radius: 0.8rem;
     border-width: 0;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+// fs-12
+.fs-12 {
+    font-size: 0.75rem;
+}
+
+.fs-14 {
+    font-size: 0.875rem;
+}
+
+.fs-16 {
+    font-size: 1rem;
+}
+
+.fs-18 {
+    font-size: 1.125rem;
+}
+
+.fs-20 {
+    font-size: 1.25rem;
+}
+//
+//
+// dashboard
+//
+//
+#main-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+@include media-breakpoint-up(lg) {
+    #main-content {
+        padding-left: 2.2rem;
+        padding-right: 2.2rem;
+    }
 }

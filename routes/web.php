@@ -19,9 +19,14 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])
+  ->middleware('auth')
+  ->name('dashboard.index');
+
 Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])
   ->middleware('auth')
   ->name('dashboard');
+
 
 require __DIR__ . '/admin.php';
 

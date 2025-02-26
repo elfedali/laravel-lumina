@@ -31,25 +31,26 @@ $(function () {
                 .post(form.attr("action"), form.serialize())
                 .then((response) => {
                     modal.hide();
+                    location.reload();
 
-                    if (response.data.locale && response.data.locale.id) {
-                        axios
-                            .get(
-                                `/locales/${response.data.locale.id}/set-active-json`
-                            )
-                            .then(() => {
-                                window.location.href = "/"; // Redirect to home
-                            })
-                            .catch((error) => {
-                                console.error(
-                                    "Error setting active locale:",
-                                    error
-                                );
-                            });
-                    } else {
-                        console.error("Locale ID not found in response.");
-                        window.location.href = "/"; // Fallback to home
-                    }
+                    // if (response.data.locale && response.data.locale.id) {
+                    //     axios
+                    //         .get(
+                    //             `/locales/${response.data.locale.id}/set-active-json`
+                    //         )
+                    //         .then(() => {
+                    //             window.location.href = "/"; // Redirect to home
+                    //         })
+                    //         .catch((error) => {
+                    //             console.error(
+                    //                 "Error setting active locale:",
+                    //                 error
+                    //             );
+                    //         });
+                    // } else {
+                    //     console.error("Locale ID not found in response.");
+                    //     window.location.href = "/"; // Fallback to home
+                    // }
                 })
                 .catch((error) => {
                     if (error.response && error.response.status === 422) {

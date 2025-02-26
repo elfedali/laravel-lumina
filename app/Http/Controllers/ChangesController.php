@@ -121,12 +121,12 @@ class ChangesController extends Controller
         ]);
 
         // message 
-        session::flash('success', 'Le salon a été sauvegardé avec succès');
+        session::flash('success', 'Une adresse a été ajoutée avec succès !');
 
         return response()->json(
             [
                 "success" => true,
-                "message" => "Le salon a été sauvegardé avec succès",
+                "message" => "Une adresse a été ajoutée avec succès !",
                 "locale" => $locale
             ],
             201
@@ -159,11 +159,11 @@ class ChangesController extends Controller
 
         // message 
 
-        return redirect()->route('dashboard')->with('success', 'Le local a été supprimé avec succès');
+        return redirect()->route('dashboard')->with('success', 'Une adresse a été supprimée avec succès !');
 
         // return response()->json([
         //     "success" => true,
-        //     "message" => "Le local a été supprimé avec succès",
+        //     "message" => "Une adresse a été supprimée avec succès !",
         //     "locale" => $locale
         // ], 200);
     }
@@ -207,7 +207,7 @@ class ChangesController extends Controller
 
         return response()->json([
             "success" => true,
-            "message" => "Le local a été mis à jour avec succès",
+            "message" => "L'adresse a été mise à jour avec succès !",
             "locale" => $locale
         ], 200);
     }
