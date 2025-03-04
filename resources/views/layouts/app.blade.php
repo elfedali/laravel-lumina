@@ -22,7 +22,12 @@
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    @if (Auth::user()->role == 'admin')
+        @vite(['resources/sass/app.scss', 'resources/js/admin.js'])
+    @else
+        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @endif
 
 </head>
 

@@ -4,6 +4,58 @@ const modal = new Modal(document.getElementById("appCompanyModal"));
 
 const m = document.getElementById("appCompanyModal");
 
+/* when I edit the Locale (shop), 
+I fill the form with the data comming from the DOM
+Like : address, city, neighborhood, country, phone*, phone2, opening_hours
+when I click | Mettre à jours | an http request is sent to the backend, 
+When all is good, show the success message after we close the edit Modal
+else show the errors message on the modal ... */
+
+/* 
+when I want to add the new 'Locale', 
+Open the modal , is you can use the old one, it's ok , if not you can always create a new one 
+like create the new Locale and validate the request and all, 
+set the selected Locale on the session as this one , go to the dashboard
+ */
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const modal = new bootstrap.Modal(document.getElementById('appModal'));
+
+//     document.getElementById('editCompanyButton').addEventListener('click', async function () {
+//         const companyId = this.dataset.id;
+//         console.log(companyId);
+
+//         // Load the form content
+//        const response = await fetch(`/changes/companies/${companyId}/edit`);
+//        const formHtml = await response.text();
+
+//         // Inject the form into the modal and show it
+//         document.getElementById("editShopModalDialog").innerHTML = formHtml;
+//         modal.show();
+//     });
+// });
+
+// btn-edit-locale
+// document.addEventListener('DOMContentLoaded', () => {
+//    const modal = new Modal(document.getElementById('editLocaleModal'));
+
+//     for (let button of document.getElementsByClassName('btn_edit_locale')) {
+//         button.addEventListener('click', async function () {
+//             const localeId = this.dataset.id;
+//             console.log(localeId);
+
+//             // Load the form content
+//           //  const response = await fetch(`/changes/locales/${localeId}/edit`);
+//           // const formHtml = await response.text();
+//             const formHtml = '<h1>test</h1>';
+//             // Inject the form into the modal and show it
+//            document.getElementById("editLocaleModalBody").innerHTML = formHtml;
+//             modal.show();
+//         });
+//     }
+
+// });
+
 $(function () {
     // Cache frequently used selectors
     const $btnEditCompany = $("#btnEditCompany");

@@ -1,9 +1,18 @@
 {
+  "resources/js/admin.js": {
+    "file": "assets/admin-PnUScFU-.js",
+    "name": "admin",
+    "src": "resources/js/admin.js",
+    "isEntry": true
+  },
   "resources/js/app.js": {
-    "file": "assets/app-DZVufuY9.js",
+    "file": "assets/app-jsy7rS4U.js",
     "name": "app",
     "src": "resources/js/app.js",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "resources/js/admin.js"
+    ]
   },
   "resources/sass/app.scss": {
     "file": "assets/app-CzNpxKph.css",
