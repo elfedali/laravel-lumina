@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth')
+Route::middleware(['auth', 'can:viewAdmin'])
     ->prefix('admin')
     ->group(function () {
 

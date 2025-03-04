@@ -22,7 +22,7 @@
                     </span>
                 </a>
             </li>
-            <li>
+            <li class="nav-item">
                 <a class="nav-link {{ Request::routeIs('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">
                     <svg width="1.3rem" viewBox="0 0 24 24">
                         <path fill="currentColor"
@@ -33,7 +33,7 @@
                     </span>
                 </a>
             </li>
-            <li>
+            <li class="nav-item">
                 <a class="nav-link {{ Request::routeIs('locales.*') ? 'active' : '' }}"
                     href="{{ route('locales.index') }}">
                     <svg width="1.2rem" viewBox="0 0 24 24">
