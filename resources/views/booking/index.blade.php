@@ -77,9 +77,9 @@
                                 <thead>
                                     <tr>
                                         <th>Client</th>
-                                        <th>Date &amp; heure</th>
-                                        <th>Couverts</th>
-                                        <th>Statut</th>
+                                        <th>Date &amp; Time</th>
+                                        <th>Covers</th>
+                                        <th>Status</th>
                                         <th>Notes</th>
                                         <th>Actions</th>
                                     </tr>

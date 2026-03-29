@@ -24,7 +24,7 @@
                         @csrf
 
                         <div class="mb-3">
-                            <label class="form-label">Nom complet <span class="text-danger">*</span></label>
+                            <label class="form-label">Full name <span class="text-danger">*</span></label>
                             <input type="text" name="full_name" class="form-control @error('full_name') is-invalid @enderror"
                                 value="{{ old('full_name') }}" required>
                             @error('full_name')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -61,7 +61,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Nombre de couverts <span class="text-danger">*</span></label>
+                            <label class="form-label">Covers <span class="text-danger">*</span></label>
                             <input type="number" name="party_size" class="form-control @error('party_size') is-invalid @enderror"
                                 value="{{ old('party_size', 2) }}" min="1" max="100" required>
                             @error('party_size')<div class="invalid-feedback">{{ $message }}</div>@enderror

@@ -71,11 +71,11 @@ class MenuItem extends Model
     public function getDietaryBadgesAttribute(): array
     {
         $badges = [];
-        if ($this->is_halal)       $badges[] = ['label' => 'Halal',     'color' => '#198754'];
-        if ($this->is_vegetarian)  $badges[] = ['label' => 'Végétarien','color' => '#0d6efd'];
-        if ($this->is_vegan)       $badges[] = ['label' => 'Vegan',     'color' => '#20c997'];
-        if ($this->is_gluten_free) $badges[] = ['label' => 'Sans gluten','color' => '#ffc107'];
-        if ($this->is_spicy)       $badges[] = ['label' => 'Épicé',     'color' => '#dc3545'];
+        if ($this->is_halal)       $badges[] = ['label' => 'Halal',       'color' => '#198754'];
+        if ($this->is_vegetarian)  $badges[] = ['label' => 'Vegetarian',  'color' => '#0d6efd'];
+        if ($this->is_vegan)       $badges[] = ['label' => 'Vegan',       'color' => '#20c997'];
+        if ($this->is_gluten_free) $badges[] = ['label' => 'Gluten-free', 'color' => '#ffc107'];
+        if ($this->is_spicy)       $badges[] = ['label' => 'Spicy',       'color' => '#dc3545'];
         return $badges;
     }
 }

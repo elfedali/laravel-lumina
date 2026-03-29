@@ -25,7 +25,7 @@
                         @method('PUT')
 
                         <div class="mb-3">
-                            <label class="form-label">Nom complet <span class="text-danger">*</span></label>
+                            <label class="form-label">Full name <span class="text-danger">*</span></label>
                             <input type="text" name="full_name" class="form-control @error('full_name') is-invalid @enderror"
                                 value="{{ old('full_name', $booking->full_name) }}" required>
                             @error('full_name')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -54,7 +54,7 @@
                                 @error('booking_date')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             <div class="col">
-                                <label class="form-label">Heure <span class="text-danger">*</span></label>
+                                <label class="form-label">Time <span class="text-danger">*</span></label>
                                 <input type="time" name="booking_time" class="form-control @error('booking_time') is-invalid @enderror"
                                     value="{{ old('booking_time', \Illuminate\Support\Str::substr($booking->booking_time, 0, 5)) }}" required>
                                 @error('booking_time')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -63,13 +63,13 @@
 
                         <div class="row g-3 mb-3">
                             <div class="col">
-                                <label class="form-label">Couverts <span class="text-danger">*</span></label>
+                                <label class="form-label">Covers <span class="text-danger">*</span></label>
                                 <input type="number" name="party_size" class="form-control @error('party_size') is-invalid @enderror"
                                     value="{{ old('party_size', $booking->party_size) }}" min="1" max="100" required>
                                 @error('party_size')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             <div class="col">
-                                <label class="form-label">Statut</label>
+                                <label class="form-label">Status</label>
                                 <select name="status" class="form-select @error('status') is-invalid @enderror">
                                     @foreach(\App\Models\Booking::statuses() as $value => $label)
                                         <option value="{{ $value }}" @selected(old('status', $booking->status) === $value)>
@@ -89,7 +89,7 @@
                         </div>
 
                         <div class="d-flex gap-2">
-                            <button type="submit" class="btn btn-primary px-4">Mettre à jour</button>
+                            <button type="submit" class="btn btn-primary px-4">Update</button>
                             <a href="{{ route('booking.index') }}" class="btn btn-outline-secondary">Cancel</a>
                         </div>
                     </form>

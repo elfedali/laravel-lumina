@@ -10,14 +10,14 @@
                         <header class="d-flex justify-content-between align-items-start">
                             <div>
                                 <h1 class="h5">{{ __('Clients') }}</h1>
-                                <p class="text-muted fw-light">{{ __('Gérer tous vos clients ici.') }}</p>
+                                <p class="text-muted fw-light">{{ __('Manage all your clients here.') }}</p>
                             </div>
                             <div>
                                 <a href="{{ route('users.create') }}" class="btn btn-primary">
                                     <svg viewBox="0 0 24 24">
                                         <path fill="currentColor" d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" />
                                     </svg>
-                                    {{ __('Ajouter un client') }}
+                                    {{ __('Add client') }}
                                 </a>
                             </div>
                         </header>
@@ -26,7 +26,7 @@
                             <form action="#" method="GET">
                                 <div class="mb-3">
                                     <input type="search" id="search" name="search" class="form-control"
-                                        placeholder="{{ __('Rechercher un client...') }}"
+                                        placeholder="{{ __('Search for a client...') }}"
                                         value="{{ request()->get('search') }}">
                                 </div>
                             </form>
@@ -36,11 +36,11 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">{{ __('Nom Complet') }}</th>
-                                            <th scope="col">{{ __('Nom de salon') }}</th>
+                                            <th scope="col">{{ __('Full name') }}</th>
+                                            <th scope="col">{{ __('Business name') }}</th>
                                             <th scope="col">{{ __('Email') }}</th>
-                                            <th scope="col">{{ __('Téléphone') }}</th>
-                                            <th scope="col">{{ __('Date d\'ajout') }}</th>
+                                            <th scope="col">{{ __('Phone') }}</th>
+                                            <th scope="col">{{ __('Date added') }}</th>
                                             <th scope="col" class="text-end">{{ __('Actions') }}</th>
                                         </tr>
                                     </thead>
@@ -62,11 +62,11 @@
                                                     <div class="btn-group">
                                                         <a href="{{ route('users.edit', $client->id) }}"
                                                             class="btn btn-sm btn-light">
-                                                            <i class="fa-solid fa-pen"></i> {{ __('Modifier') }}
+                                                            <i class="fa-solid fa-pen"></i> {{ __('Edit') }}
                                                         </a>
                                                         <button class="btn btn-sm btn-danger"
                                                             onclick="event.preventDefault(); document.getElementById('delete-form-{{ $client->id }}').submit();">
-                                                            <i class="fa-solid fa-trash"></i> {{ __('Supprimer') }}
+                                                            <i class="fa-solid fa-trash"></i> {{ __('Delete') }}
                                                         </button>
                                                     </div>
                                                     <form action="{{ route('users.destroy', $client->id) }}" method="POST"
@@ -89,7 +89,7 @@
                                 <div class="text-center">
                                     <i class="fa-solid fa-users-slash fs-3x text-muted"></i>
                                     <p class="text-muted">
-                                        {{ __('Aucun client trouvé.') }}
+                                        {{ __('No clients found.') }}
                                     </p>
                                 </div>
                             </div>

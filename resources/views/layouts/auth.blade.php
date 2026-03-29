@@ -17,31 +17,102 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <style>
+        body.auth-shell {
+            font-family: 'Manrope', sans-serif;
+            background: #fff;
+        }
+
+        .auth-hero {
+            background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .auth-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, rgba(10, 18, 38, 0.78) 0%, rgba(10, 18, 38, 0.45) 100%);
+        }
+
+        .auth-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .auth-form-wrap {
+            max-width: 460px;
+            margin: 0 auto;
+        }
+
+        .auth-form-wrap .form-control {
+            font-size: 0.9375rem;
+        }
+
+        .auth-form-wrap .btn-primary {
+            padding-top: 0.6rem;
+            padding-bottom: 0.6rem;
+        }
+
+        .pwd-toggle {
+            position: absolute;
+            right: 0.75rem;
+            top: 1.75rem;
+            transform: translateY(-50%);
+            z-index: 5;
+            background: transparent;
+            border: 0;
+            color: #9ca3af;
+            padding: 0.2rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .pwd-toggle:hover { color: #374151; }
+    </style>
 </head>
 
 <body class="auth-shell">
-        <div class="row g-0 min-vh-100">
-            <section class="col-lg-6 d-none d-lg-block">
-                <div class="auth-hero position-relative vh-100 overflow-hidden p-5">
-                    <div class="auth-hero-content">
-                        <p class="h1 fw-bold text-light mb-3">
-                            {{ config('app.name', 'laravel') }}
-                        </p>
-                        <p class="text-light-emphasis mb-4 fs-5">Appointment and service management platform</p>
-                        <div class="p-lg-5">
-                            <img src="{{ asset('assets/images/auth.png') }}" class="img-fluid" alt="Authentication - Lumina">
-                        </div>
-                    </div>
+    <div class="row g-0 min-vh-100">
+
+        {{-- Left panel — image --}}
+        <section class="col-lg-6 d-none d-lg-flex flex-column">
+            <div class="auth-hero position-relative vh-100 overflow-hidden p-5 d-flex flex-column justify-content-between">
+                <div class="auth-hero-content">
+                    <a href="/" class="text-decoration-none">
+                        <span class="h3 fw-bold text-white">{{ config('app.name', 'Lumina') }}</span>
+                    </a>
+                    <p class="text-white-50 mt-1 mb-0 small">Appointment &amp; service management</p>
                 </div>
-            </section>
-            <!-- /.col-lg-6 -->
-            <section class="col-lg-6 d-flex align-items-center p-4 p-lg-5">
-                <main class="auth-form-wrap p-lg-5 w-100">
-                    @yield('content')
-                </main>
-            </section>
-        </div>
-        <!-- /.row -->
+                <div class="auth-hero-content">
+                    <blockquote class="blockquote text-white mb-0">
+                        <p class="fs-5 fst-italic lh-base">"Effortless scheduling,<br>exceptional service."</p>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        {{-- Right panel — form --}}
+        <section class="col-lg-6 d-flex align-items-center justify-content-center p-4 p-lg-5 bg-white">
+            <main class="auth-form-wrap w-100 py-4">
+                @yield('content')
+            </main>
+        </section>
+
+    </div>
+
+    <script>
+        document.querySelectorAll('.pwd-toggle').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var input = document.getElementById(btn.getAttribute('data-target'));
+                var isHidden = input.type === 'password';
+                input.type = isHidden ? 'text' : 'password';
+                btn.querySelector('.icon-eye').classList.toggle('d-none', isHidden);
+                btn.querySelector('.icon-eye-slash').classList.toggle('d-none', !isHidden);
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -1,11 +1,11 @@
 <main>
 
-    <!-- Informations sur le propriétaire -->
+    <!-- Owner information -->
     <div class="card">
         <div class="card-body">
             <h6 class="mb-3 fw-semibold">{{ __('Owner information') }}</h6>
             <div class="row">
-                <!-- Nom de famille -->
+                <!-- Last name -->
                 <div class="col-lg mb-3">
                     <div class="form-floating">
 
@@ -21,7 +21,7 @@
                     </div>
                 </div>
 
-                <!-- Prénom -->
+                <!-- First name -->
                 <div class="col-lg mb-3">
                     <div class="form-floating">
 
@@ -38,7 +38,7 @@
             </div>
 
             <div class="row">
-                <!-- Téléphone -->
+                <!-- Phone -->
                 <div class=" col-lg mb-3">
                     <div class="form-floating">
 
@@ -97,7 +97,7 @@
         <div class="card-body">
             <h6>{{ __('Business information') }}</h6>
             <div class="row">
-                <!-- Nom du salon -->
+                <!-- Business name -->
                 <div class=" col-lg mb-3">
                     <div class="form-floating">
                         <input type="text" name="company[name]" id="company_name"
@@ -114,7 +114,7 @@
 
                 </div>
 
-                <!-- Catégorie du salon -->
+                <!-- Business category -->
                 <div class=" col-lg mb-3">
                     <div class="form-floating">
 

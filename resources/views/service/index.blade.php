@@ -106,7 +106,7 @@
                             <input type="text" name="name" class="form-control form-control-sm" required
                                 placeholder="Ex: Starters, Main courses, Desserts…">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-sm">Créer</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Create</button>
                         <button type="button" class="btn btn-outline-secondary btn-sm" id="btnCancelAddSection">✕</button>
                     </form>
                 </div>

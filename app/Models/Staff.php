@@ -27,6 +27,8 @@ class Staff extends Model
         'locale_id'   => 'integer',
         'function_id' => 'integer',
         'is_active'   => 'boolean',
+        'hire_date'   => 'date',
+        'sort_order'  => 'integer',
     ];
 
     public function locale(): BelongsTo

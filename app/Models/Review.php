@@ -23,6 +23,7 @@ class Review extends Model
         'locale_id'    => 'integer',
         'user_id'      => 'integer',
         'rating'       => 'integer',
+        'replied_at'   => 'datetime',
         'is_published' => 'boolean',
     ];
 

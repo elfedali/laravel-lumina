@@ -10,10 +10,10 @@
                         <header class="d-flex justify-content-between align-items-start">
                             <div>
                                 <h1 class="h5">
-                                    Les locaux
+                                    Locations
                                 </h1>
                                 <p class="text-muted fw-light">
-                                    Gérer tous les locaux ici.
+                                    Manage all locations here.
                                 </p>
                             </div>
                             <div>
@@ -21,7 +21,7 @@
                                     <svg viewBox="0 0 24 24">
                                         <path fill="currentColor" d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" />
                                     </svg>
-                                    Ajouter un local
+                                    Add location
                                 </a>
                             </div>
                         </header>
@@ -41,8 +41,8 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">{{ __('Nom du salon') }}</th>
-                                            <th scope="col">{{ __('Locaux') }}</th>
+                                            <th scope="col">{{ __('Business name') }}</th>
+                                            <th scope="col">{{ __('Locations') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>

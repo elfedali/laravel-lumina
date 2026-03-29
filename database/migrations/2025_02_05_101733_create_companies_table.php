@@ -28,7 +28,8 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->string('zip_code')->nullable();
 
-            $table->json('media')->nullable();
+            $table->json('social_media')->nullable();
+            $table->string('website')->nullable();
 
             $table->foreignId('owner_id')
                 ->constrained('users', 'id')

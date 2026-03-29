@@ -57,6 +57,7 @@ class Locale extends Model
     protected $casts = [
         'id'           => 'integer',
         'is_primary'   => 'boolean',
+        'is_active'    => 'boolean',
         'company_id'   => 'integer',
         'hours'        => 'array',
         'avg_rating'   => 'decimal:2',

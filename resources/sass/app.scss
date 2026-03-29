@@ -1,52 +1,10 @@
-// Theme foundation (Bootstrap-aligned)
-$body-bg: #fff;
-$primary: #0d6efd;
-$success: #198754;
-$info: #0dcaf0;
-$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-
-// Typography
-$font-size-base: 0.9375rem;
-$line-height-base: 1.6;
-$h1-font-size: $font-size-base * 2.5;
-$h2-font-size: $font-size-base * 2;
-$h3-font-size: $font-size-base * 1.75;
-$h4-font-size: $font-size-base * 1.5;
-$h5-font-size: $font-size-base * 1.25;
-$h6-font-size: 0.95rem;
-$nav-link-font-size: 0.875rem;
-$font-weight-base: 400;
-$font-weight-medium: 500;
-$font-weight-semibold: 600;
-$font-weight-bold: 700;
-
-// Components
-$card-bg: #fff;
-$card-cap-bg: #f8f9fa;
-$card-border-width: 0;
-$card-border-radius: 1rem;
-$table-bg: #fff;
-$input-bg: #fff;
-$input-btn-padding-y: 0.6rem;
-$input-font-weight: 400;
-$input-border-radius: 0.8rem;
-$input-focus-box-shadow: none;
-$nav-pills-border-radius: 3rem;
-$alert-border-radius: 0.85rem;
-$alert-border-width: 0;
-$dropdown-link-active-color: #111933;
-$dropdown-link-hover-bg: #eef2ff;
-$dropdown-link-active-bg: #e8efff;
-$dropdown-bg: #fff;
-$dropdown-border-radius: 0.9rem;
-$dropdown-box-shadow: rgba(23, 32, 73, 0.13) 0 10px 30px;
-$dropdown-border-width: 0;
-$modal-content-bg: #fff;
+// One-variable override to give the content area depth (Bootstrap $gray-100)
+$body-bg: #f8f9fa;
 
 @import "bootstrap/scss/bootstrap";
 @import "_dash.scss";
 
-$sidebar-width: 290px;
+$sidebar-width: 270px;
 
 .main-container {
 
@@ -143,32 +101,16 @@ $sidebar-width: 290px;
     }
 }
 
-label {
-    font-weight: 500;
-    font-size: 0.9375rem;
-    color: #5b6482;
+.cursor-pointer {
+    cursor: pointer;
 }
 
 .text-sm {
     font-size: 0.8125rem;
 }
 
-.text-md {
-    font-size: 1rem;
-}
-
 .text-xs {
     font-size: 0.75rem;
-}
-
-.cursor-pointer {
-    cursor: pointer;
-}
-
-.dropdown-menu {
-    border-radius: 0.8rem;
-    border-width: 0;
-    box-shadow: rgba(23, 32, 73, 0.13) 0 10px 30px;
 }
 
 .fs-12 {

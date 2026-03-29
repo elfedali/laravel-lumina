@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label d-block">Caractéristiques</label>
+                            <label class="form-label d-block">Features</label>
                             <div class="d-flex flex-wrap gap-3 mt-1">
                                 @foreach([
                                     'is_halal'      => 'Halal',

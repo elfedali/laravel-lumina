@@ -11,11 +11,11 @@
                                 d="m3.343 12l7.071 7.071L9 20.485l-7.778-7.778a1 1 0 0 1 0-1.414L9 3.515l1.414 1.414z" />
                         </svg>
                         <span class="ms-2">
-                            {{ __('Retour') }}
-                        </span>
+                        {{ __('Back') }}
+                    </span>
                     </a>
                     <div class="mt-4">
-                        <h1 class="h5 mb-3 fw-semibold"> Modifier le local</h1>
+                        <h1 class="h5 mb-3 fw-semibold">Edit location</h1>
                     </div>
                 </header>
                 {{-- update --}}

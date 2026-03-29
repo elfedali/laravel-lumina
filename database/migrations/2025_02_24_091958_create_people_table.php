@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('avatar')->nullable();
             $table->integer('point')->default(0);
-            $table->integer('phone')->nullable()->nullable();
-            $table->string('email')->unique()->nullable();
+            $table->string('phone', 40)->nullable();
+            $table->string('email', 100)->unique()->nullable();
             $table->foreignId('locale_id')->constrained()
                 ->onDelete('cascade');
 

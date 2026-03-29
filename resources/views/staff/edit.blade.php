@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="d-flex gap-2">
-                            <button type="submit" class="btn btn-primary px-4">Mettre à jour</button>
+                            <button type="submit" class="btn btn-primary px-4">Update</button>
                             <a href="{{ route('staff.index') }}" class="btn btn-outline-secondary">Cancel</a>
                         </div>
                     </form>
