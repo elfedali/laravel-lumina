@@ -23,54 +23,62 @@
                     <form action="{{ route('booking.store') }}" method="POST">
                         @csrf
 
-                        <div class="mb-3">
-                            <label class="form-label">Full name <span class="text-danger">*</span></label>
-                            <input type="text" name="full_name" class="form-control @error('full_name') is-invalid @enderror"
-                                value="{{ old('full_name') }}" required>
+                        <div class="form-floating mb-3">
+                            <input type="text" id="full_name" name="full_name" class="form-control @error('full_name') is-invalid @enderror"
+                                value="{{ old('full_name') }}" required placeholder="Full name" autofocus>
+                            <label for="full_name">Full name <span class="text-danger">*</span></label>
                             @error('full_name')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
                         <div class="row g-3 mb-3">
                             <div class="col">
-                                <label class="form-label">Phone</label>
-                                <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
-                                    value="{{ old('phone') }}">
-                                @error('phone')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-floating">
+                                    <input type="text" id="phone" name="phone" class="form-control @error('phone') is-invalid @enderror"
+                                        value="{{ old('phone') }}" placeholder="Phone">
+                                    <label for="phone">Phone</label>
+                                    @error('phone')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
                             <div class="col">
-                                <label class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                                    value="{{ old('email') }}">
-                                @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-floating">
+                                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                                        value="{{ old('email') }}" placeholder="Email">
+                                    <label for="email">Email</label>
+                                    @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
                         </div>
 
                         <div class="row g-3 mb-3">
                             <div class="col">
-                                <label class="form-label">Date <span class="text-danger">*</span></label>
-                                <input type="date" name="booking_date" class="form-control @error('booking_date') is-invalid @enderror"
-                                    value="{{ old('booking_date') }}" min="{{ today()->format('Y-m-d') }}" required>
-                                @error('booking_date')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-floating">
+                                    <input type="date" id="booking_date" name="booking_date" class="form-control @error('booking_date') is-invalid @enderror"
+                                        value="{{ old('booking_date') }}" min="{{ today()->format('Y-m-d') }}" required placeholder="Date">
+                                    <label for="booking_date">Date <span class="text-danger">*</span></label>
+                                    @error('booking_date')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
                             <div class="col">
-                                <label class="form-label">Time <span class="text-danger">*</span></label>
-                                <input type="time" name="booking_time" class="form-control @error('booking_time') is-invalid @enderror"
-                                    value="{{ old('booking_time') }}" required>
-                                @error('booking_time')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-floating">
+                                    <input type="time" id="booking_time" name="booking_time" class="form-control @error('booking_time') is-invalid @enderror"
+                                        value="{{ old('booking_time') }}" required placeholder="Time">
+                                    <label for="booking_time">Time <span class="text-danger">*</span></label>
+                                    @error('booking_time')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Covers <span class="text-danger">*</span></label>
-                            <input type="number" name="party_size" class="form-control @error('party_size') is-invalid @enderror"
-                                value="{{ old('party_size', 2) }}" min="1" max="100" required>
+                        <div class="form-floating mb-3">
+                            <input type="number" id="party_size" name="party_size" class="form-control @error('party_size') is-invalid @enderror"
+                                value="{{ old('party_size', 2) }}" min="1" max="100" required placeholder="Covers">
+                            <label for="party_size">Covers <span class="text-danger">*</span></label>
                             @error('party_size')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
-                        <div class="mb-4">
-                            <label class="form-label">Notes</label>
-                            <textarea name="notes" class="form-control @error('notes') is-invalid @enderror"
-                                rows="3" placeholder="Allergies, special occasions…">{{ old('notes') }}</textarea>
+                        <div class="form-floating mb-4">
+                            <textarea id="notes" name="notes" class="form-control @error('notes') is-invalid @enderror"
+                                placeholder="Allergies, special occasions…" style="height:100px">{{ old('notes') }}</textarea>
+                            <label for="notes">Notes</label>
                             @error('notes')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 

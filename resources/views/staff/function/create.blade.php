@@ -23,10 +23,10 @@
                     <form action="{{ route('staff.function.store') }}" method="POST">
                         @csrf
 
-                        <div class="mb-3">
-                            <label class="form-label">Name <span class="text-danger">*</span></label>
-                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                value="{{ old('name') }}" required placeholder="Chef, Waiter, Bartender…">
+                        <div class="form-floating mb-3">
+                            <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror"
+                                value="{{ old('name') }}" required placeholder="Chef, Waiter, Bartender…" autofocus>
+                            <label for="name">Name <span class="text-danger">*</span></label>
                             @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 

@@ -25,22 +25,25 @@
 
                         <div class="row g-3 mb-3">
                             <div class="col">
-                                <label class="form-label">First name <span class="text-danger">*</span></label>
-                                <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror"
-                                    value="{{ old('first_name') }}" required>
-                                @error('first_name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-floating">
+                                    <input type="text" id="first_name" name="first_name" class="form-control @error('first_name') is-invalid @enderror"
+                                        value="{{ old('first_name') }}" required placeholder="First name" autofocus>
+                                    <label for="first_name">First name <span class="text-danger">*</span></label>
+                                    @error('first_name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
                             <div class="col">
-                                <label class="form-label">Last name <span class="text-danger">*</span></label>
-                                <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror"
-                                    value="{{ old('last_name') }}" required>
-                                @error('last_name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-floating">
+                                    <input type="text" id="last_name" name="last_name" class="form-control @error('last_name') is-invalid @enderror"
+                                        value="{{ old('last_name') }}" required placeholder="Last name">
+                                    <label for="last_name">Last name <span class="text-danger">*</span></label>
+                                    @error('last_name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
                         </div>
 
-                            <div class="mb-3">
-                            <label class="form-label">Function</label>
-                            <select name="function_id" class="form-select @error('function_id') is-invalid @enderror">
+                            <div class="form-floating mb-3">
+                            <select id="function_id" name="function_id" class="form-select @error('function_id') is-invalid @enderror">
                                 <option value="">No function</option>
                                 @foreach($functions as $fn)
                                     <option value="{{ $fn->id }}" @selected(old('function_id') == $fn->id)>
@@ -48,21 +51,26 @@
                                     </option>
                                 @endforeach
                             </select>
+                            <label for="function_id">Function</label>
                             @error('function_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
                         <div class="row g-3 mb-3">
                             <div class="col">
-                                <label class="form-label">Phone</label>
-                                <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
-                                    value="{{ old('phone') }}">
-                                @error('phone')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-floating">
+                                    <input type="text" id="phone" name="phone" class="form-control @error('phone') is-invalid @enderror"
+                                        value="{{ old('phone') }}" placeholder="Phone">
+                                    <label for="phone">Phone</label>
+                                    @error('phone')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
                             <div class="col">
-                                <label class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                                    value="{{ old('email') }}">
-                                @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-floating">
+                                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                                        value="{{ old('email') }}" placeholder="Email">
+                                    <label for="email">Email</label>
+                                    @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
                         </div>
 

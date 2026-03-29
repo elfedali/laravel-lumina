@@ -19,6 +19,12 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+// Onboarding — shown once after registration, before accessing the app
+Route::middleware('auth')->group(function () {
+    Route::get('/onboarding', [App\Http\Controllers\OnboardingController::class, 'show'])->name('onboarding.show');
+    Route::post('/onboarding', [App\Http\Controllers\OnboardingController::class, 'store'])->name('onboarding.store');
+});
+
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])
   ->middleware('auth')
   ->name('dashboard.index');

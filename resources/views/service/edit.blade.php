@@ -26,44 +26,52 @@
 
                         <div class="row g-3 mb-3">
                             <div class="col-md-8">
-                                <label class="form-label">Name <span class="text-danger">*</span></label>
-                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                    value="{{ old('name', $menuItem->name) }}" required>
-                                @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-floating">
+                                    <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror"
+                                        value="{{ old('name', $menuItem->name) }}" required placeholder="Name" autofocus>
+                                    <label for="name">Name <span class="text-danger">*</span></label>
+                                    @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Price (MAD) <span class="text-danger">*</span></label>
-                                <input type="number" name="price" class="form-control @error('price') is-invalid @enderror"
-                                    value="{{ old('price', $menuItem->price) }}" min="0" step="0.01" required>
-                                @error('price')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-floating">
+                                    <input type="number" id="price" name="price" class="form-control @error('price') is-invalid @enderror"
+                                        value="{{ old('price', $menuItem->price) }}" min="0" step="0.01" required placeholder="0.00">
+                                    <label for="price">Price (MAD) <span class="text-danger">*</span></label>
+                                    @error('price')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Description</label>
-                            <textarea name="description" class="form-control @error('description') is-invalid @enderror"
-                                rows="2">{{ old('description', $menuItem->description) }}</textarea>
+                        <div class="form-floating mb-3">
+                            <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror"
+                                placeholder="Description" style="height: 80px">{{ old('description', $menuItem->description) }}</textarea>
+                            <label for="description">Description</label>
                             @error('description')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
                         <div class="row g-3 mb-3">
                             <div class="col-md-6">
-                                <label class="form-label">Section</label>
-                                <select name="section_id" class="form-select @error('section_id') is-invalid @enderror">
+                                <div class="form-floating">
+                                    <select id="section_id" name="section_id" class="form-select @error('section_id') is-invalid @enderror">
                                         <option value="">No section</option>
-                                    @foreach($sections as $section)
-                                        <option value="{{ $section->id }}" @selected(old('section_id', $menuItem->section_id) == $section->id)>
-                                            {{ $section->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('section_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                        @foreach($sections as $section)
+                                            <option value="{{ $section->id }}" @selected(old('section_id', $menuItem->section_id) == $section->id)>
+                                                {{ $section->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <label for="section_id">Section</label>
+                                    @error('section_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Preparation time (min)</label>
-                                <input type="number" name="preparation_time" class="form-control @error('preparation_time') is-invalid @enderror"
-                                    value="{{ old('preparation_time', $menuItem->preparation_time) }}" min="1" max="300">
-                                @error('preparation_time')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-floating">
+                                    <input type="number" id="preparation_time" name="preparation_time" class="form-control @error('preparation_time') is-invalid @enderror"
+                                        value="{{ old('preparation_time', $menuItem->preparation_time) }}" min="1" max="300" placeholder="15">
+                                    <label for="preparation_time">Preparation time (min)</label>
+                                    @error('preparation_time')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
                         </div>
 

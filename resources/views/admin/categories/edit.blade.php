@@ -26,16 +26,20 @@
 
                         <div class="row g-3 mb-3">
                             <div class="col-md-8">
-                                <label class="form-label">Name <span class="text-danger">*</span></label>
-                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                    value="{{ old('name', $category->name) }}" required>
-                                @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-floating">
+                                    <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror"
+                                        value="{{ old('name', $category->name) }}" required placeholder="Ex: Moroccan, Italian…" autofocus>
+                                    <label for="name">Name <span class="text-danger">*</span></label>
+                                    @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Icon (emoji)</label>
-                                <input type="text" name="icon" class="form-control @error('icon') is-invalid @enderror"
-                                    value="{{ old('icon', $category->icon) }}" maxlength="4">
-                                @error('icon')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-floating">
+                                    <input type="text" id="icon" name="icon" class="form-control @error('icon') is-invalid @enderror"
+                                        value="{{ old('icon', $category->icon) }}" placeholder="🍕" maxlength="4">
+                                    <label for="icon">Icon (emoji)</label>
+                                    @error('icon')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
                         </div>
 
@@ -47,12 +51,14 @@
                                 @error('color')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Order</label>
-                                <input type="number" name="sort_order" class="form-control @error('sort_order') is-invalid @enderror"
-                                    value="{{ old('sort_order', $category->sort_order) }}" min="0">
-                                @error('sort_order')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                <div class="form-floating">
+                                    <input type="number" id="sort_order" name="sort_order" class="form-control @error('sort_order') is-invalid @enderror"
+                                        value="{{ old('sort_order', $category->sort_order) }}" min="0" placeholder="0">
+                                    <label for="sort_order">Order</label>
+                                    @error('sort_order')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                </div>
                             </div>
-                            <div class="col-md-4 d-flex align-items-end pb-1">
+                            <div class="col-md-4 d-flex align-items-center">
                                 <div class="form-check">
                                     <input type="checkbox" name="is_active" value="1" class="form-check-input" id="is_active"
                                         {{ old('is_active', $category->is_active) ? 'checked' : '' }}>
@@ -61,10 +67,10 @@
                             </div>
                         </div>
 
-                        <div class="mb-4">
-                            <label class="form-label">Description</label>
-                            <textarea name="description" class="form-control @error('description') is-invalid @enderror"
-                                rows="2">{{ old('description', $category->description) }}</textarea>
+                        <div class="form-floating mb-4">
+                            <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror"
+                                placeholder="Description" style="height: 80px">{{ old('description', $category->description) }}</textarea>
+                            <label for="description">Description</label>
                             @error('description')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
