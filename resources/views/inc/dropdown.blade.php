@@ -10,7 +10,7 @@
                 data-bs-toggle="dropdown" data-bs-auto-close="false" aria-haspopup="true" aria-expanded="false">
                 <div class="d-inline-block text-sm"
                     style="width:90%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; line-height:1;">
-                    {!! session()->get(\App\Models\Locale::ACTIVE_LOCALE_NAME) ?? 'Choisissez une adresse' !!}
+                    {!! session()->get(\App\Models\Locale::ACTIVE_LOCALE_NAME) ?? 'Choose a location' !!}
                 </div>
             </button>
             <ul class="dropdown-menu w-100" data-bs-theme="light">
@@ -48,21 +48,22 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        {{-- trigger a livewire edit-locale --}}
-                                        <button class="dropdown-item" type="button"
-                                            id="edit-locale-{{ $locale->id }}" data-id="{{ $locale->id }}">
+                                        <a class="dropdown-item" href="{{ route('settings.locales.edit', $locale) }}">
                                             <x-icon_edit />
-                                            Modifier
-                                        </button>
+                                            Edit
+                                        </a>
                                     </li>
                                     @if (!$locale->is_primary)
                                         <li>
-                                            {{-- trigger a liveware delete-locale --}}
-                                            <button class="dropdown-item text-danger" type="button"
-                                                id="delete-locale-{{ $locale->id }}" data-id="{{ $locale->id }}">
-                                                <x-icon_trash />
-                                                Supprimer
-                                            </button>
+                                            <form action="{{ route('settings.locales.destroy', $locale) }}" method="POST"
+                                                onsubmit="return confirm('Delete this address?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="dropdown-item text-danger" type="submit">
+                                                    <x-icon_trash />
+                                                    Delete
+                                                </button>
+                                            </form>
                                         </li>
                                     @endif
                                 </ul>
@@ -74,10 +75,10 @@
                 @endforeach
                 <li>
                     <hr class="dropdown-divider">
-                    <button class="dropdown-item" id="btnNewLocale">
+                    <a class="dropdown-item" href="{{ route('settings.locales.create') }}">
                         <x-icon_add />
-                        Ajouter une adresse
-                    </button>
+                        Add location
+                    </a>
                 </li>
             </ul>
         </div>

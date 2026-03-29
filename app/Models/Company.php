@@ -19,6 +19,7 @@ class Company extends Model
     protected $fillable = [
         'name',
         'category',
+        'price_range',
         'description',
         'phone',
         'address',
@@ -29,6 +30,8 @@ class Company extends Model
         'logo',
         'website',
         'social_media',
+        'is_featured',
+        'is_active',
         'owner_id',
     ];
 
@@ -38,9 +41,13 @@ class Company extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
+        'id'           => 'integer',
         'social_media' => 'array',
-        'owner_id' => 'integer',
+        'owner_id'     => 'integer',
+        'avg_rating'   => 'decimal:2',
+        'review_count' => 'integer',
+        'is_featured'  => 'boolean',
+        'is_active'    => 'boolean',
     ];
 
     public function locales(): HasMany

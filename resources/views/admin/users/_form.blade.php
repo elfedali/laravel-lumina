@@ -3,7 +3,7 @@
     <!-- Informations sur le propriétaire -->
     <div class="card">
         <div class="card-body">
-            <h6 class="mb-3 fw-semibold">{{ __('Informations sur le propriétaire.') }}</h6>
+            <h6 class="mb-3 fw-semibold">{{ __('Owner information') }}</h6>
             <div class="row">
                 <!-- Nom de famille -->
                 <div class="col-lg mb-3">
@@ -11,9 +11,9 @@
 
                         <input type="text" name="lastname" id="lastname"
                             class="form-control @error('lastname') is-invalid @enderror"
-                            placeholder="{{ __('Nom de la famille') }}"
+                            placeholder="{{ __('Last name') }}"
                             value="{{ $user->lastname ?? old('lastname') }}">
-                        <label for="lastname" class="form-label">{{ __('Nom de la famille') }} <span
+                        <label for="lastname" class="form-label">{{ __('Last name') }} <span
                                 class="text-danger">*</span></label>
                         @error('lastname')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -27,8 +27,8 @@
 
                         <input type="text" name="firstname" id="firstname"
                             class="form-control @error('firstname') is-invalid @enderror"
-                            placeholder="{{ __('Prénom') }}" value="{{ $user->firstname ?? old('firstname') }}">
-                        <label for="firstname" class="form-label">{{ __('Prénom') }} <span
+                            placeholder="{{ __('First name') }}" value="{{ $user->firstname ?? old('firstname') }}">
+                        <label for="firstname" class="form-label">{{ __('First name') }} <span
                                 class="text-danger">*</span></label>
                         @error('firstname')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -44,8 +44,8 @@
 
                         <input type="text" name="phone" id="phone"
                             class="form-control @error('phone') is-invalid @enderror"
-                            placeholder="{{ __('Téléphone') }}" value="{{ $user->phone ?? old('phone') }}">
-                        <label for="phone" class="form-label">{{ __('Téléphone') }} <span
+                            placeholder="{{ __('Phone') }}" value="{{ $user->phone ?? old('phone') }}">
+                        <label for="phone" class="form-label">{{ __('Phone') }} <span
                                 class="text-danger">*</span></label>
                         @error('phone')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -61,9 +61,9 @@
 
                         <input type="email" name="email" id="email"
                             class="form-control @error('email') is-invalid @enderror"
-                            placeholder="{{ __('Adresse e-mail') }}" value="{{ $user->email ?? old('email') }}"
+                            placeholder="{{ __('Email address') }}" value="{{ $user->email ?? old('email') }}"
                             @if ($isEdit) disabled @endif autocomplete="off">
-                        <label for="email" class="form-label">{{ __('Adresse e-mail') }} <span
+                        <label for="email" class="form-label">{{ __('Email address') }} <span
                                 class="text-danger">*</span></label>
                         @error('email')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -77,9 +77,9 @@
 
                         <input type="text" name="password" id="password"
                             class="form-control @error('password') is-invalid @enderror"
-                            placeholder="{{ __('Mot de passe') }}" autocomplete="off"
+                            placeholder="{{ __('Password') }}" autocomplete="off"
                             @if ($isEdit) disabled @endif>
-                        <label for="password" class="form-label">{{ __('Mot de passe') }} <span
+                        <label for="password" class="form-label">{{ __('Password') }} <span
                                 class="text-danger">*</span></label>
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -95,16 +95,16 @@
     <!-- Informations sur le salon -->
     <div class="card mt-4">
         <div class="card-body">
-            <h6>{{ __('Informations sur le salon.') }}</h6>
+            <h6>{{ __('Business information') }}</h6>
             <div class="row">
                 <!-- Nom du salon -->
                 <div class=" col-lg mb-3">
                     <div class="form-floating">
                         <input type="text" name="company[name]" id="company_name"
                             class="form-control @error('company.name') is-invalid @enderror"
-                            placeholder="{{ __('Nom du salon') }}"
+                            placeholder="{{ __('Business name') }}"
                             value="{{ old('company.name', $user->company->name ?? '') }}">
-                        <label for="company_name" class="form-label">{{ __('Nom du salon') }} <span
+                        <label for="company_name" class="form-label">{{ __('Business name') }} <span
                                 class="text-danger">*</span></label>
                         @error('company.name')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -120,9 +120,9 @@
 
                         <input type="text" name="company[category]" id="company_category"
                             class="form-control @error('company.category') is-invalid @enderror"
-                            placeholder="{{ __('Catégorie du salon') }}"
+                            placeholder="{{ __('Business category') }}"
                             value="{{ old('company.category', $user->company->category ?? '') }}">
-                        <label for="company_category" class="form-label">{{ __('Catégorie du salon') }} <span
+                        <label for="company_category" class="form-label">{{ __('Business category') }} <span
                                 class="text-danger">*</span></label>
                         @error('company.category')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -145,7 +145,7 @@
 
                                 <h6 class="m-0">
 
-                                    {{ __('Logo du salon') }}
+                                    {{ __('Business logo') }}
                                 </h6>
                                 @if (isset($user) and $user->company?->logo)
                                     <div class="mt-2">
@@ -156,8 +156,8 @@
 
                                 @if (!$isEdit or !$user->company?->logo)
                                     <p class="text-muted m-0">
-                                        <small id="logo_name">
-                                            {{ __('Aucun logo n\'est importé') }}
+                                            <small id="logo_name">
+                                            {{ __('No logo uploaded') }}
                                         </small>
                                     </p>
                                 @endif
@@ -174,7 +174,7 @@
                                         </g>
                                     </svg>
 
-                                    {{ __('Importer un logo') }}
+                                    {{ __('Upload logo') }}
                                 </a>
                             </div>
                         </div>
@@ -186,7 +186,7 @@
     </div>
     <div class="text-end">
         <button type="submit" class="btn btn-primary mt-3">
-            {{ $isEdit ? __('Modifier le client') : __('Ajouter le client') }}
+            {{ $isEdit ? __('Edit client') : __('Add client') }}
         </button>
     </div>
 </main>

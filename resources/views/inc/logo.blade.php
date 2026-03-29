@@ -10,9 +10,7 @@
             </span>
         @endif
     </a>
-    <button class="btn btn-link p-0" id="btnEditCompany" data-id="{{ auth()->user()->company?->id }}"
-        data-name="{{ auth()->user()->company?->name }}" data-category="{{ auth()->user()->company?->category }}"
-        data-logo="{{ auth()->user()->company?->logo ?? null }}">
+    <a class="btn btn-link p-0" href="{{ route('settings.company.edit') }}">
         <x-icon_edit />
-    </button>
+    </a>
 </div>

@@ -37,4 +37,18 @@ Route::middleware(['auth', 'can:viewAdmin'])
             ->name('locales.update');
         Route::delete('/locales/{locale}', [App\Http\Controllers\AdminLocaleController::class, 'destroy'])
             ->name('locales.destroy');
+
+        // categories
+        Route::get('/categories', [App\Http\Controllers\AdminCategoryController::class, 'index'])
+            ->name('admin.categories.index');
+        Route::get('/categories/create', [App\Http\Controllers\AdminCategoryController::class, 'create'])
+            ->name('admin.categories.create');
+        Route::post('/categories', [App\Http\Controllers\AdminCategoryController::class, 'store'])
+            ->name('admin.categories.store');
+        Route::get('/categories/{category}/edit', [App\Http\Controllers\AdminCategoryController::class, 'edit'])
+            ->name('admin.categories.edit');
+        Route::put('/categories/{category}', [App\Http\Controllers\AdminCategoryController::class, 'update'])
+            ->name('admin.categories.update');
+        Route::delete('/categories/{category}', [App\Http\Controllers\AdminCategoryController::class, 'destroy'])
+            ->name('admin.categories.destroy');
     });

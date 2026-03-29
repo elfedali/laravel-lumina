@@ -1,21 +1,21 @@
 {
   "resources/js/admin.js": {
-    "file": "assets/admin-PnUScFU-.js",
+    "file": "assets/admin-ByWyOsMz.js",
     "name": "admin",
     "src": "resources/js/admin.js",
-    "isEntry": true
-  },
-  "resources/js/app.js": {
-    "file": "assets/app-jsy7rS4U.js",
-    "name": "app",
-    "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
-      "resources/js/admin.js"
+      "resources/js/app.js"
     ]
   },
+  "resources/js/app.js": {
+    "file": "assets/app-dh_Kk9My.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
   "resources/sass/app.scss": {
-    "file": "assets/app-CzNpxKph.css",
+    "file": "assets/app-5tJXgJyB.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   }

@@ -1,7 +1,92 @@
-.card{
-    &-dash{
+.card {
+    &-dash {
         background-color: white;
         padding: 1.3rem;
         border-radius: $card-border-radius;
+    }
+}
+
+// =====================
+// Sidebar
+// =====================
+
+.aside-icon {
+    font-size: 0.95rem;
+    width: 1.25rem;
+    text-align: center;
+    flex-shrink: 0;
+    margin-right: 0.75rem;
+    opacity: 0.75;
+    transition: opacity 0.15s ease;
+}
+
+.aside-section-title {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    padding: 0.875rem 1rem 0.25rem;
+}
+
+.aside-divider {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 0.5rem 0.875rem;
+}
+
+.aside-submenu {
+    padding-left: 0.5rem;
+
+    .nav-link {
+        font-size: 0.8125rem;
+        padding-left: 1rem !important;
+    }
+}
+
+.icon-edit-company {
+    color: white;
+    opacity: 0.4;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.85;
+    }
+}
+
+// Sidebar nav — hover, active, layout
+.layout-nav-side>.navbar {
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+
+    .navbar-nav .nav-link {
+        display: flex;
+        align-items: center;
+        border-radius: 0.5rem;
+        transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #fff;
+
+            .aside-icon {
+                opacity: 1;
+            }
+        }
+
+        &.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-weight: 500;
+            box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.85);
+
+            .aside-icon {
+                opacity: 1;
+            }
+        }
+    }
+
+    // Override old ::before active bar (replaced by inset box-shadow)
+    .navbar-nav>.nav-item>.nav-link.active::before {
+        display: none;
     }
 }

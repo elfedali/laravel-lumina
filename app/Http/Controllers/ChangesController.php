@@ -24,26 +24,26 @@ class ChangesController extends Controller
         $this->middleware('auth');
     }
 
-    public function update(Request $request, $companyId)
+    public function editCompany()
     {
-        $validator = Validator::make($request->all(), [
+        $company = auth()->user()->company;
+
+        return view('settings.company.edit', compact('company'));
+    }
+
+    public function updateCompany(Request $request)
+    {
+        $data = $request->validate([
             'name' => 'required|string',
             'category' => 'required|string',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors' => $validator->errors(),
-            ], 422);
-        }
-
-        $company = Company::findOrFail($companyId);
+        $company = Company::findOrFail(auth()->user()->company->id);
 
         $company->update([
-            'name' => $request->input('name'),
-            'category' => $request->input('category'),
+            'name' => $data['name'],
+            'category' => $data['category'],
         ]);
 
         $company->save();
@@ -57,12 +57,7 @@ class ChangesController extends Controller
             }
         }
 
-        Session::flash('success', 'Le salon a été mis à jour avec succès');
-
-        return response()->json([
-            "success" => true,
-            "message" => "Le salon a été mis à jour avec succès"
-        ]);
+        return redirect()->route('settings.company.edit')->with('success', 'Le salon a été mis à jour avec succès');
     }
 
     /**
@@ -84,11 +79,16 @@ class ChangesController extends Controller
         );
     }
 
+    public function createLocale()
+    {
+        $locale = null;
 
+        return view('settings.locales.create', compact('locale'));
+    }
 
     public function storeLocale(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $data = $request->validate([
             'address' => 'required|string',
             'neighborhood' => 'required|string',
             'city' => 'required|string',
@@ -102,35 +102,18 @@ class ChangesController extends Controller
 
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors' => $validator->errors(),
-            ], 422);
-        }
-
         $locale =   \App\Models\Locale::create([
-            'address' => $request->input('address'),
-            'neighborhood' => $request->input('neighborhood'),
-            'city' => $request->input('city'),
-            'phone' => $request->input('phone'),
-            'phone2' => $request->input('phone2') ?? null,
-            'hours' => $request->input('hours') ?? null,
+            'address' => $data['address'],
+            'neighborhood' => $data['neighborhood'],
+            'city' => $data['city'],
+            'phone' => $data['phone'],
+            'phone2' => $data['phone2'] ?? null,
+            'hours' => $data['hours'] ?? null,
             'company_id' => auth()->user()->company->id,
             'is_primary' => false,
         ]);
 
-        // message 
-        session::flash('success', 'Une adresse a été ajoutée avec succès !');
-
-        return response()->json(
-            [
-                "success" => true,
-                "message" => "Une adresse a été ajoutée avec succès !",
-                "locale" => $locale
-            ],
-            201
-        );
+        return redirect()->route('dashboard')->with('success', 'Une adresse a été ajoutée avec succès !');
     }
 
 
@@ -139,21 +122,15 @@ class ChangesController extends Controller
      * Delete locale by axios
      */
 
-    public function destroyLocale($id)
+    public function editLocale(Locale $locale)
     {
-        $locale = \App\Models\Locale::findOrFail($id);
+        return view('settings.locales.edit', compact('locale'));
+    }
 
-        if (!$locale)
-            return response()->json([
-                "success" => false,
-                "message" => "Le local n'existe pas",
-            ]);
-
+    public function destroyLocale(Locale $locale)
+    {
         if ($locale->is_primary)
-            return response()->json([
-                "success" => false,
-                "message" => "Impossible de supprimer le local principal",
-            ]);
+            return redirect()->back()->with('danger', 'Impossible de supprimer le local principal');
 
         $locale->delete();
 
@@ -169,10 +146,9 @@ class ChangesController extends Controller
     }
 
 
-    public function updateLocale(Request $request, $id)
+    public function updateLocale(Request $request, Locale $locale)
     {
-
-        $validator = Validator::make($request->all(), [
+        $data = $request->validate([
             'address' => 'required|string',
             'neighborhood' => 'required|string',
             'city' => 'required|string',
@@ -186,29 +162,15 @@ class ChangesController extends Controller
 
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors' => $validator->errors(),
-            ], 422);
-        }
-
-        $locale = Locale::find($id);
         $locale->update([
-            'address' => $request->input('address'),
-            'neighborhood' => $request->input('neighborhood'),
-            'city' => $request->input('city'),
-            'phone' => $request->input('phone'),
-            'phone2' => $request->input('phone2') ?? null,
-            'hours' => $request->input('hours') ?? null,
+            'address' => $data['address'],
+            'neighborhood' => $data['neighborhood'],
+            'city' => $data['city'],
+            'phone' => $data['phone'],
+            'phone2' => $data['phone2'] ?? null,
+            'hours' => $data['hours'] ?? null,
         ]);
 
-        // message
-
-        return response()->json([
-            "success" => true,
-            "message" => "L'adresse a été mise à jour avec succès !",
-            "locale" => $locale
-        ], 200);
+        return redirect()->route('dashboard')->with('success', 'L\'adresse a été mise à jour avec succès !');
     }
 }

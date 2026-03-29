@@ -6,9 +6,7 @@ use App\Http\Requests\StorePersonRequest;
 use App\Http\Requests\UpdatePersonRequest;
 use App\Models\Locale;
 use App\Models\Person;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class PersonController extends Controller
 {
@@ -41,7 +39,7 @@ class PersonController extends Controller
      */
     public function create()
     {
-        //
+        return view('client.create');
     }
 
     /**
@@ -69,30 +67,24 @@ class PersonController extends Controller
      */
     public function edit(Person $person)
     {
-        //
+        return view('client.edit', compact('person'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function updateAjax(UpdatePersonRequest $request)
+    public function update(UpdatePersonRequest $request, Person $person)
     {
-        $person = Person::findOrFail($request->id);
         $person->update($request->all());
-        session()->flash('success', 'Le client a été mis à jour avec succès');
-        return response()->json(
-            ['success' => 'Le client a été mis à jour avec succès', 'client' => $person]
-        );
+
+        return redirect()->route('client.index')->with('success', 'Le client a été mis à jour avec succès');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
+    public function destroy(Person $person)
     {
-        $clientId = $request->id;
-
-        $person = Person::findOrFail($clientId);
         $person->delete();
 
         return redirect()->route('client.index')->with('success', 'Le client a été supprimé avec succès');

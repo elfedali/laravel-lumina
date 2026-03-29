@@ -18,6 +18,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
 
@@ -31,7 +32,7 @@
 
 </head>
 
-<body x-data="{ modalOpen: false }">
+<body>
 
 
     <div class="layout layout-nav-side">
@@ -51,8 +52,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-start" aria-labelledby="triggerId">
 
-                        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editAccountModal">Mon
-                            compte</button>
+                        <a class="dropdown-item" href="{{ route('account.edit') }}">Mon compte</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
@@ -90,13 +90,6 @@
 
     </div>
     <!-- /.container-fluid -->
-
-    @include('inc.modal-company')
-    @include('inc.modal-locale')
-    @include('inc.modal-delete-locale')
-    @include('inc.modal-edit-locale')
-
-    @include('inc.modal-edit-account')
 
     <script src="//unpkg.com/alpinejs" defer></script>
     @yield('scripts')

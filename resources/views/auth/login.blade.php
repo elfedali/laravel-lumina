@@ -3,10 +3,10 @@
 @section('content')
     <section>
         <h1 class="h1">
-            Connexion
+            Login
         </h1>
         <p class="text-muted lead">
-            Connectez-vous pour accéder à votre compte.
+            Sign in to access your account.
         </p>
 
         <form method="POST" action="{{ route('login') }}">
@@ -16,7 +16,7 @@
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
                     value="{{ old('email') }}" required placeholder="email">
                 <label for="email">
-                    Adresse email
+                    Email address
                 </label>
 
                 @error('email')
@@ -30,7 +30,7 @@
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                     name="password" required autocomplete="current-password" placeholder="Password">
                 <label for="password">
-                    Mot de passe
+                    Password
                 </label>
 
                 @error('password')
@@ -46,19 +46,19 @@
                         {{ old('remember') ? 'checked' : '' }}>
 
                     <label class="form-check-label" for="remember">
-                        Se souvenir de moi
+                        Remember me
                     </label>
                 </div>
             </div>
 
             <div>
                 <button type="submit" class="btn btn-primary">
-                    Se connecter
+                    Sign in
                 </button>
 
                 @if (Route::has('password.request'))
                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                        Mot de passe oublié ?
+                        Forgot your password?
                     </a>
                 @endif
             </div>
@@ -66,9 +66,9 @@
 
         <div class="mt-4">
             <p>
-                Vous n'avez pas de compte ?
+                Don't have an account?
                 <a href="{{ route('register') }}" class="btn btn-link">
-                    S'inscrire
+                    Register
                 </a>
             </p>
         </div>

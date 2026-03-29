@@ -3,7 +3,7 @@
     <section>
 
         <h1 class="h4 mb-4">
-            Tableau de bord
+            Dashboard
         </h1>
 
 
@@ -11,14 +11,14 @@
             <div class="col-lg-4">
                 <div class="card-dash mb-4" style="height: 200px;">
                     <h6>
-                        Chiffre d'affaires
+                        Revenue
                     </h6>
                 </div>
             </div>
             <div class="col-lg-8">
                 <div class="card-dash mb-4" style="height: 200px;">
                     <h6>
-                        Rendez-vous
+                        Appointments
 
                     </h6>
                 </div>
@@ -28,7 +28,7 @@
             <div class="col-lg-4">
                 <div class="card-dash mb-4" style="height: 200px;">
                     <h6>
-                        Top clients
+                        Top Clients
 
                     </h6>
                 </div>
@@ -36,7 +36,7 @@
             <div class="col-lg-8">
                 <div class="card-dash mb-4" style="height: 200px;">
                     <h6>
-                        Les prestations les plus réservées
+                        Most Booked Services
 
                     </h6>
                 </div>
