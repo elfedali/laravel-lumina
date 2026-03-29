@@ -4,8 +4,7 @@
         $locales = $user->company->locales ?? [];
     @endphp
 
-    <div class="px-3  w-100">
-        <div class="dropdown w-100 mb-4">
+    <div class="dropdown w-100">
             <button class="btn btn-outline-light border  dropdown-toggle w-100 text-start " type="button"
                 data-bs-toggle="dropdown" data-bs-auto-close="false" aria-haspopup="true" aria-expanded="false">
                 <div class="d-inline-block text-sm"
@@ -81,8 +80,6 @@
                     </a>
                 </li>
             </ul>
-        </div>
-
     </div>
 
 @endif

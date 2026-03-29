@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')
     ->group(function () {
 
+        # ---- LOCATIONS (management page)
+        Route::get('/locations', [App\Http\Controllers\ChangesController::class, 'indexLocales'])->name('locations.index');
+
         Route::get('/settings/company/edit', [App\Http\Controllers\ChangesController::class, 'editCompany'])
             ->name('settings.company.edit');
         Route::put('/settings/company', [App\Http\Controllers\ChangesController::class, 'updateCompany'])

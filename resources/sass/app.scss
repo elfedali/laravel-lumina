@@ -22,36 +22,6 @@ $sidebar-width: 270px;
     .layout-nav-side {
         display: flex;
 
-        >.navbar {
-            padding: $spacer;
-            width: $sidebar-width;
-            height: 100vh;
-            overflow-y: auto;
-            -ms-overflow-style: none;
-            flex-direction: column;
-            align-items: flex-start;
-
-            &::-webkit-scrollbar {
-                display: none;
-            }
-
-            .navbar-brand {
-                margin-bottom: $spacer * 2;
-            }
-
-            .navbar-collapse {
-                align-items: flex-start;
-                width: 100%;
-                flex-shrink: 0;
-                padding-bottom: $spacer;
-            }
-
-            .navbar-nav {
-                flex-direction: column;
-                width: 100%;
-            }
-        }
-
         .main-container {
             overflow: hidden;
             flex: 1;

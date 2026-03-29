@@ -86,6 +86,12 @@ class ChangesController extends Controller
         return view('settings.locales.create', compact('locale'));
     }
 
+    public function indexLocales()
+    {
+        $locales = auth()->user()->company->locales;
+        return view('locations.index', compact('locales'));
+    }
+
     public function storeLocale(Request $request)
     {
         $data = $request->validate([
