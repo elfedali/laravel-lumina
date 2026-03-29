@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-black sticky-top p-lg-0" data-bs-theme="dark" id="navigation">
+<nav class="navbar navbar-expand-lg sticky-top p-lg-0 app-sidebar" data-bs-theme="dark" id="navigation">
 
     @php
         $adminItems = [
@@ -29,9 +29,9 @@
         ];
     @endphp
 
-    <a class="navbar-brand ps-2 mb-1" href="{{ route('dashboard') }}">
+    <a class="navbar-brand ps-3 py-3 mb-1 d-flex align-items-center" href="{{ route('dashboard') }}">
         <span class="fw-bold fs-5">Lumina</span>
-        <span class="ms-2 text-white-50" style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">Admin</span>
+        <span class="sidebar-badge ms-2">Admin</span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

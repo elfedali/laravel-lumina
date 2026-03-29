@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -32,7 +32,7 @@
 
 </head>
 
-<body>
+<body class="app-shell">
 
 
     <div class="layout layout-nav-side">
@@ -45,21 +45,24 @@
 
         <section class="main-container d-flex justify-content-between flex-column">
             <div>
-                <header class="py-2 px-3 bg-white d-flex justify-content-end align-items-center">
-                    <a class="btn btn-link dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
+                <header class="app-topbar px-3 px-lg-4 d-flex justify-content-end align-items-center">
+                    <a class="btn app-user-toggle dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        <span class="fs-14"> {{ Auth::user()->fullname }}</span>
+                        <span class="app-user-avatar" aria-hidden="true">
+                            {{ strtoupper(substr(Auth::user()->fullname ?? 'U', 0, 1)) }}
+                        </span>
+                        <span class="fs-14">{{ Auth::user()->fullname }}</span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-start" aria-labelledby="triggerId">
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="triggerId">
 
-                        <a class="dropdown-item" href="{{ route('account.edit') }}">Mon compte</a>
+                        <a class="dropdown-item" href="{{ route('account.edit') }}">My account</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                             <span class="text-danger">
 
-                                Déconnexion
+                                Sign out
                             </span>
                         </a>
                     </div>
@@ -72,12 +75,12 @@
                 @include('layouts._alerts')
             </div>
             <main id="main-content" class="flex-fill py-4"> @yield('content')</main>
-            <footer class="bg-white py-3">
+            <footer class="app-footer py-3">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
                             <p class="m-0">
-                                &copy; {{ date('Y') }} <b>Lumina</b>. Tous droits réservés.
+                                &copy; {{ date('Y') }} <b>Lumina</b>. All rights reserved.
                             </p>
                         </div>
                     </div>

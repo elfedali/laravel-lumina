@@ -1,8 +1,127 @@
 .card {
     &-dash {
-        background-color: white;
+        background-color: #fff;
+        border: 1px solid #e7ebf6;
+        box-shadow: 0 12px 25px rgba(18, 34, 84, 0.05);
         padding: 1.3rem;
         border-radius: $card-border-radius;
+    }
+}
+
+.app-shell {
+    background: #f8f9fa;
+    min-height: 100vh;
+}
+
+.app-sidebar {
+    background-color: #212529;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-brand-wrap {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 0.95rem;
+    margin: 0.9rem 0.85rem 0.4rem;
+}
+
+.sidebar-company-logo {
+    border: 2px solid rgba(255, 255, 255, 0.18);
+}
+
+.sidebar-company-name {
+    color: #f6f8ff;
+}
+
+.sidebar-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #98e5d4;
+    border: 1px solid rgba(152, 229, 212, 0.38);
+    border-radius: 999px;
+    padding: 0.2rem 0.45rem;
+}
+
+.app-topbar {
+    min-height: 68px;
+    background: #fff;
+    border-bottom: 1px solid #e7ebf6;
+}
+
+.app-user-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    border: 1px solid #dfe6fb;
+    border-radius: 999px;
+    background: #fff;
+    color: #1f2a52;
+    padding: 0.32rem 0.7rem 0.32rem 0.4rem;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        border-color: #ccd7fb;
+        color: #1a2450;
+        background: #f8faff;
+    }
+}
+
+.app-user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: $primary;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.78rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-footer {
+    background: rgba(255, 255, 255, 0.72);
+    border-top: 1px solid #e7ebf6;
+    color: #5d6788;
+}
+
+.alert {
+    border-radius: 0.9rem;
+    border: 0;
+    box-shadow: 0 8px 18px rgba(16, 33, 86, 0.08);
+}
+
+.form-control,
+.form-select {
+    border-color: #d9e0f4;
+    background-color: #fff;
+
+    &:focus {
+        border-color: #9fb5fd;
+        box-shadow: 0 0 0 0.2rem rgba(32, 71, 219, 0.12);
+    }
+}
+
+.form-floating>label {
+    color: #677096;
+}
+
+.table {
+    border-radius: 1rem;
+    overflow: hidden;
+
+    thead th {
+        background: #f7f9ff;
+        color: #44507a;
+        font-weight: 700;
+        border-bottom: 1px solid #e2e8fa;
+    }
+
+    tbody td {
+        border-color: #edf1fb;
     }
 }
 
@@ -16,17 +135,17 @@
     text-align: center;
     flex-shrink: 0;
     margin-right: 0.75rem;
-    opacity: 0.75;
+    opacity: 0.72;
     transition: opacity 0.15s ease;
 }
 
 .aside-section-title {
     display: block;
     font-size: 0.6875rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.52);
     padding: 0.875rem 1rem 0.25rem;
 }
 
@@ -45,12 +164,13 @@
 }
 
 .icon-edit-company {
-    color: white;
-    opacity: 0.4;
-    transition: opacity 0.2s;
+    color: #fff;
+    opacity: 0.55;
+    transition: opacity 0.2s, transform 0.2s;
 
     &:hover {
-        opacity: 0.85;
+        opacity: 1;
+        transform: translateY(-1px);
     }
 }
 
@@ -61,11 +181,14 @@
     .navbar-nav .nav-link {
         display: flex;
         align-items: center;
-        border-radius: 0.5rem;
+        border-radius: 0.7rem;
+        margin: 0.12rem 0.6rem;
+        color: rgba(255, 255, 255, 0.78);
+        padding: 0.58rem 0.78rem;
         transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 
         &:hover {
-            background-color: rgba(255, 255, 255, 0.08);
+            background-color: rgba(255, 255, 255, 0.12);
             color: #fff;
 
             .aside-icon {
@@ -74,10 +197,10 @@
         }
 
         &.active {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(43, 106, 255, 0.22);
             color: #fff;
-            font-weight: 500;
-            box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.85);
+            font-weight: 600;
+            box-shadow: inset 3px 0 0 rgba(155, 192, 255, 0.95);
 
             .aside-icon {
                 opacity: 1;
@@ -88,5 +211,40 @@
     // Override old ::before active bar (replaced by inset box-shadow)
     .navbar-nav>.nav-item>.nav-link.active::before {
         display: none;
+    }
+}
+
+.auth-shell {
+    background: #f8f9fa;
+}
+
+.auth-hero {
+    background: #212529;
+}
+
+.auth-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.auth-form-wrap {
+    max-width: 560px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid #e7ebf6;
+    border-radius: 1.2rem;
+    box-shadow: 0 14px 38px rgba(16, 35, 85, 0.08);
+}
+
+@media (max-width: 991.98px) {
+    .auth-form-wrap {
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        padding: 0 !important;
+    }
+
+    .app-topbar {
+        border-radius: 0;
     }
 }

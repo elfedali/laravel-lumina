@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-black sticky-top p-lg-0" data-bs-theme="dark" id="navigation">
+<nav class="navbar navbar-expand-lg sticky-top p-lg-0 app-sidebar" data-bs-theme="dark" id="navigation">
 
     @include('inc/logo')
 
@@ -71,7 +71,7 @@
 
                 <li class="nav-item">
                     <hr class="aside-divider">
-                    <span class="aside-section-title">Équipe</span>
+                    <span class="aside-section-title">Team</span>
                     <ul class="aside-submenu list-unstyled mb-0">
                         @foreach ($teamItems as $item)
                             <li>

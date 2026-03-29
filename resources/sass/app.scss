@@ -1,151 +1,134 @@
-// Body
-$body-bg: #f5f5f5;
-$primary: #000;
-$font-family-sans-serif: "Inter", sans-serif;
-$success: #65c644;
-$info: #428fe8;
+// Theme foundation (Bootstrap-aligned)
+$body-bg: #fff;
+$primary: #0d6efd;
+$success: #198754;
+$info: #0dcaf0;
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-// 15px to rem = 0.9375rem
+// Typography
 $font-size-base: 0.9375rem;
 $line-height-base: 1.6;
-
-$input-focus-box-shadow: none;
-
-$card-bg: #fff;
-$card-cap-bg: #f3f4f5;
-$card-border-width: 0;
-
-$card-border-radius: 0.8rem;
-$input-bg: #fff;
-$table-bg: #fff;
-
-$input-btn-padding-y: 0.6rem;
-$input-font-weight: 600;
-$input-border-radius: 0.5rem;
-$input-font-weight: 400;
-
-$nav-pills-border-radius: 3rem;
-
-$font-weight-base: 400;
-$font-weight-medium: 500;
-$font-weight-semibold: 500;
-$font-weight-bold: 600;
-
-$alert-border-radius: 0rem;
-$alert-border-width: 0;
-
-$dropdown-link-active-color: #000;
-$dropdown-link-active-bg: #ddd;
-$dropdown-link-hover-bg: #f5f5f5;
-$dropdown-link-active-bg: #f5f5f5;
-$dropdown-bg: #fff;
-$dropdown-border-radius: 0.8rem;
-$dropdown-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-
-$dropdown-border-width: 0;
-
-// $modal-backdrop-bg: rgba(181, 194, 248, 0.5);
-$modal-content-bg: #fff;
-
 $h1-font-size: $font-size-base * 2.5;
 $h2-font-size: $font-size-base * 2;
 $h3-font-size: $font-size-base * 1.75;
 $h4-font-size: $font-size-base * 1.5;
 $h5-font-size: $font-size-base * 1.25;
-$h6-font-size: 0.9rem;
-// 14px
+$h6-font-size: 0.95rem;
 $nav-link-font-size: 0.875rem;
+$font-weight-base: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
 
-// Bootstrap
+// Components
+$card-bg: #fff;
+$card-cap-bg: #f8f9fa;
+$card-border-width: 0;
+$card-border-radius: 1rem;
+$table-bg: #fff;
+$input-bg: #fff;
+$input-btn-padding-y: 0.6rem;
+$input-font-weight: 400;
+$input-border-radius: 0.8rem;
+$input-focus-box-shadow: none;
+$nav-pills-border-radius: 3rem;
+$alert-border-radius: 0.85rem;
+$alert-border-width: 0;
+$dropdown-link-active-color: #111933;
+$dropdown-link-hover-bg: #eef2ff;
+$dropdown-link-active-bg: #e8efff;
+$dropdown-bg: #fff;
+$dropdown-border-radius: 0.9rem;
+$dropdown-box-shadow: rgba(23, 32, 73, 0.13) 0 10px 30px;
+$dropdown-border-width: 0;
+$modal-content-bg: #fff;
+
 @import "bootstrap/scss/bootstrap";
 @import "_dash.scss";
 
-//
-//
-// layouts.scss
-//
-//
-$sidebar_width: 290px;
+$sidebar-width: 290px;
+
 .main-container {
-    > .container:last-child,
-    > .container-fluid:last-child {
+
+    >.container:last-child,
+    >.container-fluid:last-child {
         padding-bottom: $spacer * 4;
+    }
+
+    >.container {
+        padding-bottom: $spacer * 3;
     }
 }
 
 @include media-breakpoint-up(lg) {
     .layout-nav-side {
         display: flex;
-        > .navbar {
+
+        >.navbar {
             padding: $spacer;
-            width: $sidebar_width;
+            width: $sidebar-width;
             height: 100vh;
-            overflow-y: scroll;
+            overflow-y: auto;
             -ms-overflow-style: none;
+            flex-direction: column;
+            align-items: flex-start;
+
             &::-webkit-scrollbar {
                 display: none;
             }
-            flex-direction: column;
-            align-items: flex-start;
+
             .navbar-brand {
                 margin-bottom: $spacer * 2;
             }
+
             .navbar-collapse {
                 align-items: flex-start;
                 width: 100%;
                 flex-shrink: 0;
                 padding-bottom: $spacer;
             }
+
             .navbar-nav {
                 flex-direction: column;
                 width: 100%;
-                & > .nav-item > .nav-link {
-                    padding-left: 1rem;
-                    &.active {
-                        position: relative;
-                        &::before {
-                            content: "";
-                            position: absolute;
-                            width: 0.2rem;
-                            height: 80%;
-                            background-color: $white;
-                            left: 0;
-                            top: 10%;
-                            border-radius: 0 0.5rem 0.5rem 0;
-                        }
-                    }
-                }
             }
         }
+
         .main-container {
             overflow: hidden;
             flex: 1;
-            max-width: calc(100vw - $sidebar_width);
-            > .container {
+            max-width: calc(100vw - $sidebar-width);
+
+            >.container {
                 padding-left: $spacer * 2;
                 padding-right: $spacer * 2;
             }
         }
+
         .content-container {
             display: flex;
             height: calc(100vh - 3.5625rem);
         }
     }
+
     .layout-sidebar {
         .main-container {
             display: flex;
             flex-direction: row-reverse;
             height: calc(100vh - 59px);
             overflow: hidden;
+
             .content-container {
                 height: 100%;
-                overflow-y: scroll;
+                overflow-y: auto;
                 -ms-overflow-style: none;
+                flex: 1;
+
                 &::-webkit-scrollbar {
                     display: none;
                 }
-                flex: 1;
-                > .container:last-child {
+
+                >.container:last-child {
                     padding-bottom: $spacer * 3;
                 }
             }
@@ -153,13 +136,6 @@ $sidebar_width: 290px;
     }
 }
 
-.main-container {
-    > .container {
-        padding-bottom: $spacer * 3;
-    }
-}
-
-//  btn
 .btn {
     svg {
         width: 1.2rem;
@@ -168,18 +144,20 @@ $sidebar_width: 290px;
 }
 
 label {
-    font-weight: 400;
+    font-weight: 500;
     font-size: 0.9375rem;
-    opacity: 0.6;
+    color: #5b6482;
 }
 
 .text-sm {
     font-size: 0.8125rem;
 }
-text-md {
+
+.text-md {
     font-size: 1rem;
 }
-text-xs {
+
+.text-xs {
     font-size: 0.75rem;
 }
 
@@ -190,10 +168,9 @@ text-xs {
 .dropdown-menu {
     border-radius: 0.8rem;
     border-width: 0;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: rgba(23, 32, 73, 0.13) 0 10px 30px;
 }
 
-// fs-12
 .fs-12 {
     font-size: 0.75rem;
 }
@@ -213,15 +190,12 @@ text-xs {
 .fs-20 {
     font-size: 1.25rem;
 }
-//
-//
-// dashboard
-//
-//
+
 #main-content {
     padding-left: 1rem;
     padding-right: 1rem;
 }
+
 @include media-breakpoint-up(lg) {
     #main-content {
         padding-left: 2.2rem;
